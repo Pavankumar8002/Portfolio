@@ -1,0 +1,78 @@
+/* Marquee Container */
+.marquee-container {
+  overflow: hidden; 
+  width: 100%; /* Reduced the width of the container to 80% of the screen */
+  height: 100px; /* Set a fixed height for the container */
+  position: relative;
+  margin: 0 auto; /* Center the container horizontally */
+}
+
+/* Semi-transparent Path */
+.marquee-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3); /* Semi-transparent black path */
+  z-index: 1; /* Make sure the path is above the images */
+}
+
+/* Marquee Animation */
+.marquee {
+  display: flex;
+  animation: scroll 15s linear infinite;
+  position: relative;
+  z-index: 2; /* Make sure the images are above the path */
+  will-change: transform;
+}
+
+/* Marquee Image Styling */
+.marquee-item {
+  flex-shrink: 0; /* Prevent shrinking of images */
+  margin-right: 3vw; /* Reduced margin for images */
+}
+
+.marquee-image {
+  width: 5vw; /* Reduced image size to 12% of the viewport width */
+  height: 100%; /* Set the height to fill the container */
+  max-width: 100px; /* Cap the maximum image width */
+  object-fit: contain; /* Ensures the images are scaled properly */
+  filter: grayscale(100%); /* Converts images to black and white */
+}
+
+/* Animation for Scrolling Effect */
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Responsive Behavior */
+@media (max-width: 768px) {
+  .marquee-container {
+    width: 90%; /* Increase container size on smaller screens */
+    height: 120px; /* Adjust height for smaller screens */
+  }
+  
+  .marquee-image {
+    width: 15vw; /* Slightly increase image size on smaller screens */
+    margin-right: 2vw; /* Adjust spacing between images */
+  }
+}
+
+@media (max-width: 480px) {
+  .marquee-container {
+    width: 95%; /* Increase container size further on very small screens */
+    height: 100px; /* Further decrease height on very small screens */
+  }
+
+  .marquee-image {
+    width: 25vw; /* Further adjust image size on very small screens */
+    margin-right: 2vw; /* Reduce spacing */
+  }
+}

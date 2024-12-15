@@ -1,0 +1,144 @@
+/* General Body and Layout */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Container for Main Content */
+.main-container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Styling for Header and Navigation */
+header {
+    width: 100%;
+    background-color: transparent; /* Transparent background */
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    box-shadow: none; /* Remove any box shadow if you don't want it */
+}
+
+nav {
+    display: flex;
+    justify-content: space-between; /* Space out left and right content */
+    align-items: center; /* Center align vertically */
+    padding: 0 20px;
+}
+
+.nav-left {
+    font-family: 'Roboto', sans-serif; /* Add your preferred font here */
+    color: #fff;
+    font-size: 1.6rem; /* Adjust as needed */
+    font-weight: bold;
+}
+
+.site-name {
+    display: flex;
+    align-items: center;
+    font-size: 2rem; /* Adjust the font size for a signature-like effect */
+}
+
+.first-name {
+    color: #fff;
+    font-family: 'Dancing Script', cursive; /* Artistic signature font */
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.last-name {
+    color: #808080; /* Grey color for "Kumar" */
+    font-family: 'Dancing Script', cursive; /* Keep same font style for consistency */
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav li {
+    margin: 0 15px;
+}
+
+/* Remove underline from NavLink and a tags */
+nav a, nav .active-link {
+    color: #fff;
+    text-decoration: none; /* Remove underline */
+    font-size: 1.2rem;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+/* Active Link Styling */
+nav .active-link {
+    background-color: #555;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Hover Effect - Prevent underline */
+nav a:hover, nav .active-link:hover {
+    background-color: #4CAF50;
+    text-decoration: none !important; 
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .main-container {
+        width: 95%;
+    }
+
+    .section {
+        padding: 30px 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav li {
+        margin: 10px 0;
+    }
+
+    nav a {
+        font-size: 1.1rem;
+        padding: 10px 20px;
+    }
+}
