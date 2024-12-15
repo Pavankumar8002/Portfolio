@@ -57,7 +57,7 @@ function Portfolio() {
       {/* Skills Section */}
       <section id="skills" className="skills py-5">
         <div className="container">
-          {/* <h2 className="text-center text-white mb-5">Skills</h2> */}
+        
           <h2 className="text-center text-white mb-5">What I Bring to the Table</h2>
           <div className="row">
             {/* Skill Card 1 */}
