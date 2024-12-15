@@ -133,8 +133,6 @@ function Portfolio() {
         </div>
       </section>
 
-
-      
      <br></br>
       <section id="projects" className="projects py-5 bg-dark text-white">
         <div className="container">

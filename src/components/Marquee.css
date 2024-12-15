@@ -60,7 +60,7 @@
   }
   
   .marquee-image {
-    width: 15vw; /* Slightly increase image size on smaller screens */
+    width: 15vw; 
     margin-right: 2vw; /* Adjust spacing between images */
   }
 }
