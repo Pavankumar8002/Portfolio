@@ -1,5 +1,6 @@
 import React from 'react';
-import './Marquee.css';  // Import the updated CSS for styling
+import '../styles/Marquee.css';
+
 
 const Marquee = ({ images }) => {
   return (
