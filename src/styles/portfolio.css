@@ -9,7 +9,7 @@ html, body {
   color: #ddd; 
 }
 
-
+/* styles */
 .portfolio h1:hover {
   color: #888;
   text-shadow: 4px 4px 20px rgba(0, 0, 0, 0.4);

@@ -147,14 +147,7 @@ function Portfolio() {
   <div className="container">
     <h2 className="text-center mb-5">Achievements & Certifications</h2>
     <ul className="list-unstyled text-center">
-      {/* <li className="mb-3">
-        <h5>Certified React Developer</h5>
-        <p>Issued by XYZ Organization, 2023</p>
-      </li>
-      <li className="mb-3">
-        <h5>Winner - Hackathon 2022</h5>
-        <p>Built a project that won the XYZ Hackathon.</p>
-      </li> */}
+  
       <li className="mb-3">
         <h5>EC-Council Ethical Hacking Certificate</h5>
         <p>Issued by EC-Council, 2023</p>
