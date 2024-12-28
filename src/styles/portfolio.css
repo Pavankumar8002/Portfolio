@@ -9,7 +9,7 @@ html, body {
   color: #ddd; 
 }
 
-
+/* styles */
 .portfolio h1:hover {
   color: #888;
   text-shadow: 4px 4px 20px rgba(0, 0, 0, 0.4);
@@ -88,7 +88,7 @@ html, body {
 
 .btn-link {
   padding: 16px 35px;
-  background-color: #444; 
+  background-color: #efeaea; 
   color: white;
   font-size: 1.3rem;
   text-decoration: none;
@@ -306,7 +306,7 @@ html, body {
 .project-item a {
   display: inline-block;
   margin-top: 15px;
-  color: #333;
+  color: #070606;
   font-weight: bold;
   text-decoration: none;
   transition: all 0.3s ease;
