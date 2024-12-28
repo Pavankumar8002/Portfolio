@@ -271,4 +271,110 @@ html, body {
   }
 }
 
+.skill-card, .project-item {
+  background-color: #d3d3d3;
+  color: #333;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  transition: all 0.4s ease-in-out;
+  font-family: 'Roboto', sans-serif;
+  overflow: hidden;
+}
+
+.skill-card:hover, .project-item:hover {
+  background-color: #c0c0c0;
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.skill-card h3, .project-item h3 {
+  font-size: 1.8rem;
+  color: #222;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.skill-card p, .project-item p {
+  font-size: 1.2rem;
+  color: #555;
+  font-family: 'Ayuthaya', Arial, sans-serif;
+}
+
+.project-item a {
+  display: inline-block;
+  margin-top: 15px;
+  color: #333;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.project-item a:hover {
+  text-decoration: underline;
+  color: #111;
+}
+
+.experience-item {
+  background-color: #444;
+  color: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
+}
+
+.experience-item h3 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.experience-item p {
+  font-size: 1.2rem;
+}
+
+.experience-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+.achievements {
+  background-color: #222;
+  color: #fff;
+  padding: 60px 0;
+}
+
+.achievements h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3rem;
+  color: #fff;
+  margin-bottom: 50px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  letter-spacing: 2px;
+}
+
+.achievements ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+
+.achievements li {
+  font-size: 1.3rem;
+  font-family: 'Ayuthaya', Arial, sans-serif;
+  margin-bottom: 20px;
+}
+
+.achievements li h5 {
+  font-size: 1.5rem;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 5px;
+}
+
+.achievements li p {
+  font-size: 1.1rem;
+  color: #ccc;
+}
 
