@@ -51,101 +51,124 @@ function Portfolio() {
         <Marquee images={images} />
       </section>
 
-      {/* Skills Section */}
-      <section id="skills" className="skills py-5">
-        <div className="container">
-          <h2 className="text-center text-white mb-5">What I Bring to the Table</h2>
-          <div className="row">
-            {[
-              { title: 'React.js', description: 'Building dynamic, modern web apps with React.' },
-              { title: 'JavaScript', description: 'Proficient in ES6+ syntax and modern JavaScript features.' },
-              { title: 'HTML5 & CSS3', description: 'Building semantic, responsive web pages.' },
-              { title: 'Responsive Design', description: 'Creating websites that work across all devices.' },
-              { title: 'Git & GitHub', description: 'Version control and collaboration through Git and GitHub.' },
-              { title: '.NET', description: 'Basic understanding of backend development with .NET.' },
-              { title: 'MVC', description: 'Understanding backend development using the MVC pattern.' },
-            ].map((skill, index) => (
-              <div className="col-md-4 mb-4" key={index}>
-                <div className="card h-100 shadow-sm">
-                  <div className="card-body">
-                    <h5 className="card-title">{skill.title}</h5>
-                    <p className="card-text">{skill.description}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Experience Section */}
-      <section id="experience" className="experience py-5 bg-dark text-white">
-        <div className="container">
-          <h2 className="text-center mb-5">Experience</h2>
-          <div className="row">
-            <div className="col-md-6 mb-4">
-              <div className="experience-item bg-secondary p-4 rounded-3 shadow">
-                <h3>Frontend Developer</h3>
-                <p><strong>Company Name</strong> - January 2022 to Present</p>
-                <p>Developed and maintained dynamic, responsive web applications using React.js and JavaScript.</p>
-              </div>
-            </div>
-            <div className="col-md-6 mb-4">
-              <div className="experience-item bg-secondary p-4 rounded-3 shadow">
-                <h3>Intern</h3>
-                <p><strong>Company Name</strong> - June 2021 to December 2021</p>
-                <p>Worked on building interactive UI components and collaborated with the team to enhance application performance.</p>
-              </div>
+     {/* Skills Section */}
+<section id="skills" className="skills py-5">
+  <div className="container">
+    <h2 className="text-center text-white mb-5">What I Bring to the Table</h2>
+    <div className="row">
+      {[
+        { title: 'React.js', description: 'Building dynamic, modern web applications with React, using hooks and state management.' },
+        { title: 'Python', description: 'Experienced in building APIs, data processing, and automation scripts with Python.' },
+        { title: 'JavaScript (ES6+)', description: 'Proficient in modern JavaScript, including ES6+ features and asynchronous programming.' },
+        { title: 'HTML5 & CSS3', description: 'Creating semantic and responsive web pages using HTML5 and CSS3, with a focus on accessibility.' },
+        { title: 'Responsive Design', description: 'Building responsive, mobile-first websites that adapt seamlessly across all devices.' },
+        { title: 'Git & GitHub', description: 'Version control and collaboration through Git and GitHub, managing branches and pull requests.' },
+        { title: '.NET (C#)', description: 'Knowledge of backend development with .NET, focusing on web APIs and services.' },
+        { title: 'MVC Pattern', description: 'Understanding and implementing the Model-View-Controller design pattern in web applications.' },
+        { title: 'PostgreSQL & MySQL', description: 'Experience with relational databases, including writing complex queries and database design.' },
+        { title: 'Java', description: 'Proficient in object-oriented programming and building applications in Java.' },
+        { title: 'C & C++', description: 'Familiar with systems programming, data structures, and algorithms in C and C++.' },
+        { title: 'PHP', description: 'Experienced in building dynamic server-side applications and APIs with PHP.' },
+        // { title: 'API Development', description: 'Building RESTful APIs with Python, .NET, and Node.js for seamless data interaction.' },
+      ].map((skill, index) => (
+        <div className="col-md-4 mb-4" key={index}>
+          <div className="card h-100 shadow-sm">
+            <div className="card-body">
+              <h5 className="card-title">{skill.title}</h5>
+              <p className="card-text">{skill.description}</p>
             </div>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
-      {/* Projects Section */}
-      <section id="projects" className="projects py-5">
-        <div className="container">
-          <h2 className="text-center mb-5">Projects</h2>
-          <div className="row">
-            {[
-              {
-                title: 'Portfolio Website',
-                description: 'A responsive personal portfolio website built with React.js to showcase my skills and projects.',
-                link: 'https://github.com/yourusername/portfolio-website',
-              },
-              {
-                title: 'Weather App',
-                description: 'A weather app that uses an API to fetch real-time weather data and display it in an intuitive interface.',
-                link: 'https://github.com/yourusername/weather-app',
-              },
-            ].map((project, index) => (
-              <div className="col-md-6 mb-4" key={index}>
-                <div className="project-item bg-secondary p-4 rounded-3 shadow">
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="btn btn-link text-success">GitHub</a>
-                </div>
-              </div>
-            ))}
+
+{/* Experience Section */}
+<section id="experience" className="experience py-5 bg-dark text-white">
+  <div className="container">
+    <h2 className="text-center mb-5" style={{ color: '#000000' }}>Experience</h2>
+    <div className="row">
+      <div className="col-md-6 mb-4">
+        <div className="experience-item bg-secondary p-4 rounded-3 shadow">
+          <h3 style={{ color: '#000000' }}>Junior Software Engineer</h3>
+          <p style={{ color: '#000000' }}><strong>Idea Infinity IT Solution Pvt Ltd</strong> - July 2024 to Present</p>
+          <p >Working as a Junior Software Engineer, contributing to backend and frontend development using technologies such as .NET, React, JavaScript, and databases (PostgreSQL/MySQL). Responsible for developing and maintaining APIs and dynamic web applications.</p>
+        </div>
+      </div>
+      <div className="col-md-6 mb-4">
+        <div className="experience-item bg-secondary p-4 rounded-3 shadow">
+          <h3 style={{ color: '#000000' }}>Full Stack Developer Intern</h3>
+          <p style={{ color: '#000000' }}><strong>ProGlobal Software Pvt Ltd</strong> - August 2023 to December 2023</p>
+          <p >Worked as a Full Stack Developer Intern, where I contributed to both frontend and backend tasks. Developed dynamic user interfaces using React.js and integrated RESTful APIs for seamless data flow. Gained hands-on experience in full-stack development in an Agile environment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+{/* Projects Section */}
+<section id="projects" className="projects py-5">
+  <div className="container">
+    <h2 className="text-center mb-5">Projects</h2>
+    <div className="row">
+      {[
+        {
+          title: 'Portfolio Website',
+          description: 'A responsive portfolio website built with React.js. It showcases my skills, experience, and projects, offering smooth navigation and a modern design. Fully responsive  this project highlights my expertise in front-end development and creating user-centric web applications.',
+          link: 'https://github.com/Pavankumar8002/Portfolio',
+        },
+
+        {
+          title: 'VoiceBot',
+          description: 'A Python-based intelligent virtual assistant that uses voice recognition and semantic data to perform tasks like answering questions, setting reminders, and researching. It demonstrates my skills in AI, natural language processing, and building hands-free, productivity-enhancing applications.',
+          link: 'https://github.com/Pavankumar8002/VoiceBot',
+        },
+      ].map((project, index) => (
+        <div className="col-md-6 mb-4" key={index}>
+          <div className="project-item bg-secondary p-4 rounded-3 shadow">
+            <h3>{project.title}</h3>
+            <p>{project.description}</p>
+            <a href={project.link} target="_blank" rel="noopener noreferrer" className="btn btn-link text-success">GitHub</a>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
-      {/* Achievements Section */}
-      <section id="achievements" className="achievements py-5 bg-dark text-white">
-        <div className="container">
-          <h2 className="text-center mb-5">Achievements & Certifications</h2>
-          <ul className="list-unstyled text-center">
-            <li className="mb-3">
-              <h5>Certified React Developer</h5>
-              <p>Issued by XYZ Organization, 2023</p>
-            </li>
-            <li className="mb-3">
-              <h5>Winner - Hackathon 2022</h5>
-              <p>Built a project that won the XYZ Hackathon.</p>
-            </li>
-          </ul>
-        </div>
-      </section>
+
+
+{/* Achievements Section */}
+<section id="achievements" className="achievements py-5 bg-dark text-white">
+  <div className="container">
+    <h2 className="text-center mb-5">Achievements & Certifications</h2>
+    <ul className="list-unstyled text-center">
+      {/* <li className="mb-3">
+        <h5>Certified React Developer</h5>
+        <p>Issued by XYZ Organization, 2023</p>
+      </li>
+      <li className="mb-3">
+        <h5>Winner - Hackathon 2022</h5>
+        <p>Built a project that won the XYZ Hackathon.</p>
+      </li> */}
+      <li className="mb-3">
+        <h5>EC-Council Ethical Hacking Certificate</h5>
+        <p>Issued by EC-Council, 2023</p>
+        <a href="https://drive.google.com/file/d/1tQb8_QVPEZ0u1ObN3r3T8Ji1-GQDn2BU/view?usp=drivesdk" target="_blank" rel="noopener noreferrer" className="btn btn-link text-success">View Certificate</a>
+      </li>
+      <li className="mb-3">
+        <h5>Cisco Cyber Security Specialist</h5>
+        <p>Issued by Cisco Networking Academy, 2023</p>
+        <a href="https://www.credly.com/go/llqJzq2T" target="_blank" rel="noopener noreferrer" className="btn btn-link text-success">View Certificate</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
 
       {/* Testimonials Section */}
       <section id="testimonials" className="testimonials py-5">
@@ -155,11 +178,11 @@ function Portfolio() {
             {[
               {
                 text: 'Pavan\'s attention to detail and coding skills are remarkable. He\'s a great team player.',
-                author: 'John Doe, Senior Developer',
+                author: 'Seeripi Dheeraj,Developer',
               },
               {
                 text: 'A highly skilled developer with a passion for creating intuitive web solutions.',
-                author: 'Jane Smith, Project Manager',
+                author: 'Venkatesh G,Founder & CEO (proglobal software Pvt.Ltd.) ',
               },
             ].map((testimonial, index) => (
               <div className="col-md-6 mb-4" key={index}>
@@ -201,8 +224,8 @@ function Portfolio() {
         <div className="container text-center">
           <p>If you'd like to get in touch, feel free to reach out via email or connect with me on LinkedIn:</p>
           <ul className="list-unstyled">
-            <li>Email: <a href="mailto:youremail@example.com" className="text-success">youremail@example.com</a></li>
-            <li>LinkedIn: <a href="https://www.linkedin.com/in/yourlinkedin" target="_blank" rel="noopener noreferrer" className="text-success">Your LinkedIn Profile</a></li>
+            <li>Email: <a href="mailto:pavankumarpk8002@gmail.com" className="text-success">pavankumarpk8002@gmail.com</a></li>
+            <li>LinkedIn: <a href="https://www.linkedin.com/in/pavan-kumar-086677235" target="_blank" rel="noopener noreferrer" className="text-success">pavan-kumar</a></li>
           </ul>
         </div>
       </footer>
