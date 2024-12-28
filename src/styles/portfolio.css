@@ -15,7 +15,6 @@ html, body {
   text-shadow: 4px 4px 20px rgba(0, 0, 0, 0.4);
 }
 
-/* About Me Section */
 .about-me {
   margin-top: 80px;
 }
@@ -36,12 +35,12 @@ html, body {
 }
 
 .about-image {
-  width: 100%; /* Image will take up available space */
+  width: 100%; 
   height: auto;
   border-radius: 20px;
   transition: transform 0.5s ease-in-out, box-shadow 0.4s ease, filter 0.5s ease;
-  filter: grayscale(100%) contrast(90%) brightness(80%); /* Black & white filter */
-  max-width: 50%; /* Image width constrained to 50% of the container */
+  filter: grayscale(100%) contrast(90%) brightness(80%); 
+  max-width: 50%; 
 }
 
 .about-image:hover {
@@ -52,7 +51,7 @@ html, body {
 
 .about-text-container {
   flex: 1;
-  max-width: 50%; /* Text container takes up 50% width */
+  max-width: 50%; 
 }
 
 .about-text-container h2 {
@@ -66,7 +65,7 @@ html, body {
 
 .about-text-container p {
   font-size: 1.25rem;
-  color: #ccc; /* Lighter grey for text */
+  color: #ccc; 
   font-family: 'Ayuthaya', Arial, sans-serif;
   line-height: 1.8;
   font-weight: 400;
@@ -78,7 +77,7 @@ html, body {
   color: #fff;
 }
 
-/* Navigation Button */
+
 .navigation-links {
   margin-top: 40px;
   display: flex;
@@ -89,7 +88,7 @@ html, body {
 
 .btn-link {
   padding: 16px 35px;
-  background-color: #444; /* Dark grey background */
+  background-color: #444; 
   color: white;
   font-size: 1.3rem;
   text-decoration: none;
@@ -102,15 +101,15 @@ html, body {
 }
 
 .btn-link:hover {
-  background-color: #666; /* Slightly lighter grey for hover */
+  background-color: #666; 
   transform: translateY(-8px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
 
-/* Skills and Projects Section */
+
 .skill-card, .project-item {
-  background-color: #d3d3d3; /* Light grey background for the cards */
-  color: #333; /* Darker text for contrast */
+  background-color: #d3d3d3; 
+  color: #333; 
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
@@ -120,14 +119,14 @@ html, body {
 }
 
 .skill-card:hover, .project-item:hover {
-  background-color: #c0c0c0; /* Slightly darker light grey for hover */
+  background-color: #c0c0c0; 
   transform: translateY(-8px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
 .skill-card h3, .project-item h3 {
   font-size: 1.8rem;
-  color: #222; /* Dark grey for titles */
+  color: #222; 
   font-family: 'Montserrat', sans-serif;
   margin-bottom: 20px;
   letter-spacing: 1px;
@@ -136,14 +135,14 @@ html, body {
 
 .skill-card p, .project-item p {
   font-size: 1.2rem;
-  color: #555; /* Dark grey text for descriptions */
+  color: #555; 
   font-family: 'Ayuthaya', Arial, sans-serif;
 }
 
 .project-item a {
   display: inline-block;
   margin-top: 15px;
-  color: #333; /* Dark grey for links */
+  color: #333; 
   font-weight: bold;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -151,12 +150,11 @@ html, body {
 
 .project-item a:hover {
   text-decoration: underline;
-  color: #111; /* Even darker grey on hover */
+  color: #111; 
 }
 
-/* Footer */
 .footer {
-  background-color: #222; /* Dark grey background */
+  background-color: #222; 
   color: #fff;
   padding: 40px 30px;
   text-align: center;
@@ -178,43 +176,43 @@ html, body {
 }
 
 .footer ul li a {
-  color: #888; /* Lighter grey for links */
+  color: #888; 
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
 .footer ul li a:hover {
   text-decoration: underline;
-  color: #bbb; /* Even lighter grey for hover */
+  color: #bbb;
 }
 
-/* Adjust card padding for larger screens */
+
 @media (min-width: 768px) {
   .skill-card, .project-item {
     padding: 35px 40px;
   }
 }
 
-/* Adjust card padding for smaller screens */
+
 @media (max-width: 767px) {
   .skill-card, .project-item {
     padding: 20px 25px;
   }
 
   .about-container {
-    flex-direction: column; /* Stacks the image and text vertically on smaller screens */
+    flex-direction: column; 
   }
 
   .about-image {
-    max-width: 100%; /* Makes the image container full width on smaller screens */
+    max-width: 100%; 
   }
 
   .about-text-container {
-    max-width: 100%; /* Makes the text container full width on smaller screens */
+    max-width: 100%; 
   }
 }
 
-/* Skills Section Styling */
+
 .skills {
   background-color: #222;
   color: #fff;
@@ -231,8 +229,8 @@ html, body {
 }
 
 .card {
-  background-color: #d3d3d3; /* Light grey for card background */
-  color: #333; /* Darker text color */
+  background-color: #d3d3d3; 
+  color: #333;  
   border-radius: 15px;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
@@ -244,14 +242,14 @@ html, body {
 .card-title {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.75rem;
-  color: #222; /* Dark grey for titles */
+  color: #222; 
   margin-bottom: 15px;
   text-transform: uppercase;
 }
 
 .card-text {
   font-size: 1.1rem;
-  color: #555; /* Dark grey for descriptions */
+  color: #555;
   font-family: 'Roboto', sans-serif;
   line-height: 1.6;
 }
@@ -261,14 +259,14 @@ html, body {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Media Query for Skills */
+
 @media (max-width: 768px) {
   .skills .container {
-    flex-direction: column; /* Stacks the cards on smaller screens */
+    flex-direction: column; 
   }
 
   .card {
-    width: 100%; /* Full width on smaller screens */
+    width: 100%; 
     margin-bottom: 30px;
   }
 }
