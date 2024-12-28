@@ -189,28 +189,58 @@ function Portfolio() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="contact py-5">
-        <div className="container">
-          <h2 className="text-center text-white mb-5">Get in Touch</h2>
-          <form>
-            <div className="row mb-3">
-              <div className="col-md-6">
-                <input type="text" className="form-control" placeholder="Your Name" required />
-              </div>
-              <div className="col-md-6">
-                <input type="email" className="form-control" placeholder="Your Email" required />
-              </div>
-            </div>
-            <div className="mb-3">
-              <textarea className="form-control" rows="5" placeholder="Your Message" required></textarea>
-            </div>
-            <div className="text-center">
-              <button type="submit" className="btn btn-success">Send Message</button>
-            </div>
-          </form>
+{/* Contact Section */}
+<section id="contact" className="contact py-5">
+  <div className="container">
+    <h2 className="text-center text-white mb-5">Get in Touch</h2>
+    <form>
+      <div className="row mb-3">
+        <div className="col-md-6">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Your Name"
+            required
+            minlength="2"
+            maxlength="36"
+            onInput={(e) => {
+              // Remove any special characters (non-alphabetic and non-space characters)
+              e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, '');
+            }}
+            title="Name should only contain letters and spaces"
+          />
         </div>
-      </section>
+        <div className="col-md-6">
+          <input
+            type="email"
+            className="form-control"
+            placeholder="Your Email"
+            required
+            minlength="5"
+            maxlength="50"
+            title="Please enter a valid email address"
+          />
+        </div>
+      </div>
+      <div className="mb-3">
+        <textarea
+          className="form-control"
+          rows="5"
+          placeholder="Your Message"
+          required
+          minlength="10"
+          maxlength="500"
+          title="Message should be between 10 and 500 characters"
+        ></textarea>
+      </div>
+      <div className="text-center">
+        <button type="submit" className="btn btn-success">Send Message</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+
 
       {/* Footer Section */}
       <footer className="footer py-4 bg-dark text-white">
