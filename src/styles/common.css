@@ -1,4 +1,4 @@
-/* General Body and Layout */
+
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
 
 body {
@@ -23,7 +23,6 @@ p {
     color: #555;
 }
 
-/* Container for Main Content */
 .main-container {
     width: 80%;
     max-width: 1200px;
@@ -31,48 +30,47 @@ p {
     padding: 20px;
 }
 
-/* Styling for Header and Navigation */
 header {
     width: 100%;
-    background-color: transparent; /* Transparent background */
+    background-color: transparent; 
     padding: 10px 0;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 100;
-    box-shadow: none; /* Remove any box shadow if you don't want it */
+    box-shadow: none; 
 }
 
 nav {
     display: flex;
-    justify-content: space-between; /* Space out left and right content */
-    align-items: center; /* Center align vertically */
+    justify-content: space-between; 
+    align-items: center; 
     padding: 0 20px;
 }
 
 .nav-left {
-    font-family: 'Roboto', sans-serif; /* Add your preferred font here */
+    font-family: 'Roboto', sans-serif; 
     color: #fff;
-    font-size: 1.6rem; /* Adjust as needed */
+    font-size: 1.6rem; 
     font-weight: bold;
 }
 
 .site-name {
     display: flex;
     align-items: center;
-    font-size: 2rem; /* Adjust the font size for a signature-like effect */
+    font-size: 2rem; 
 }
 
 .first-name {
     color: #fff;
-    font-family: 'Dancing Script', cursive; /* Artistic signature font */
+    font-family: 'Dancing Script', cursive; 
     font-weight: 700;
     letter-spacing: 1px;
 }
 
 .last-name {
-    color: #808080; /* Grey color for "Kumar" */
-    font-family: 'Dancing Script', cursive; /* Keep same font style for consistency */
+    color: #808080; 
+    font-family: 'Dancing Script', cursive; 
     font-weight: 400;
     letter-spacing: 0.5px;
 }
@@ -88,30 +86,30 @@ nav li {
     margin: 0 15px;
 }
 
-/* Remove underline from NavLink and a tags */
+
 nav a, nav .active-link {
     color: #fff;
-    text-decoration: none; /* Remove underline */
+    text-decoration: none; 
     font-size: 1.2rem;
     padding: 8px 15px;
     border-radius: 4px;
     transition: background-color 0.3s ease;
 }
 
-/* Active Link Styling */
+
 nav .active-link {
     background-color: #555;
     color: #fff;
     font-weight: bold;
 }
 
-/* Hover Effect - Prevent underline */
+
 nav a:hover, nav .active-link:hover {
     background-color: #4CAF50;
     text-decoration: none !important; 
 }
 
-/* Responsive Design */
+
 @media screen and (max-width: 768px) {
     .main-container {
         width: 95%;
