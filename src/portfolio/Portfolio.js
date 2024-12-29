@@ -36,7 +36,7 @@ function Portfolio() {
               <div className="about-text-container">
                 <h2 className="text-white">Who I Am and What I Do?</h2>
                 <p className="text-light">
-                  Hello! I'm Pavan Kumar, a passionate frontend developer with experience in creating dynamic,
+                  Hello! I'm Pavan Kumar, a passionate full stack  developer with experience in creating dynamic,
                   user-friendly websites using React.js, HTML, CSS, and JavaScript. I enjoy building responsive,
                   efficient, and engaging web applications that provide an excellent user experience.
                 </p>
@@ -163,7 +163,7 @@ function Portfolio() {
 </section>
 
 
-      {/* Testimonials Section */}
+      {/* Testimonials Section
       <section id="testimonials" className="testimonials py-5">
         <div className="container">
           <h2 className="text-center mb-5">What People Say</h2>
@@ -187,7 +187,7 @@ function Portfolio() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
 {/* Contact Section */}
 <section id="contact" className="contact py-5">
