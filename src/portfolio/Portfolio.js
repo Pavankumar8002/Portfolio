@@ -50,7 +50,6 @@ function Portfolio() {
   
     try {
 
-  
       const { data, error } = await supabase
         .from('contacts') 
         .insert([
@@ -74,8 +73,6 @@ function Portfolio() {
           icon: 'success',
           confirmButtonText: 'OK',
         });
-  
-        // Reset the form fields after success
         setName('');
         setEmail('');
         setMessage('');
