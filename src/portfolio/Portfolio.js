@@ -39,53 +39,55 @@ function Portfolio() {
     return <Loading />;
   }
 
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    if (!name || !email || !message) {
-      setFormStatus('All fields are required!');
-      return;
-    }
-  
-    try {
+  if (!name || !email || !message) {
+    setFormStatus('All fields are required!');
+    return;
+  }
 
-  
-      const { data, error } = await supabase
-        .from('contacts') 
-        .insert([
-          {
-            name: name.substring(0, 36),
-            email: email.substring(0, 50),
-            message: message.substring(0, 1000),
-          },
-        ]);
-  
-      if (error) {
-        setFormStatus('Error submitting the form. Please try again later.');
-        console.error(error);
-      } else {
-        // Hide the loading spinner
-        setIsLoading(false);
-  
-        // Show success alert with SweetAlert
-        Swal.fire({
-          text: 'Thank you for reaching out!',
-          icon: 'success',
-          confirmButtonText: 'OK',
-        });
-  
-        // Reset the form fields after success
-        setName('');
-        setEmail('');
-        setMessage('');
-      }
-    } catch (error) {
-      setIsLoading(false);
-      setFormStatus('An unexpected error occurred. Please try again later.');
+  try {
+    // Show loading spinner while submitting (this will be removed later)
+    setIsLoading(true);
+
+    const { error } = await supabase
+      .from('contacts') // Your table name is 'contacts'
+      .insert([
+        {
+          name: name.substring(0, 36),
+          email: email.substring(0, 50),
+          message: message.substring(0, 1000),
+        },
+      ]);
+
+    if (error) {
+      setFormStatus('Error submitting the form. Please try again later.');
       console.error(error);
+    } else {
+      // Hide the loading spinner
+      setIsLoading(false);
+
+      // Show success alert with SweetAlert
+      Swal.fire({
+        title: 'Success!',
+        text: 'Thank you for reaching out!',
+        icon: 'success',
+        confirmButtonText: 'OK',
+      });
+
+      // Reset the form fields after success
+      setName('');
+      setEmail('');
+      setMessage('');
     }
-  };
+  } catch (error) {
+    setIsLoading(false);
+    setFormStatus('An unexpected error occurred. Please try again later.');
+    console.error(error);
+  }
+};
+
   
 
   return (
