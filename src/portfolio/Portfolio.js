@@ -3,7 +3,8 @@ import Header from '../components/Header';
 import Marquee from '../components/Marquee';
 import '../styles/portfolio.css';
 import Loading from '../components/Loading';
-
+import { supabase } from './supabaseClient'; 
+import Swal from 'sweetalert2';
 const images = [
   '/Pictures/java.png',
   '/Pictures/react.png',
@@ -21,17 +22,71 @@ const images = [
 
 function Portfolio() {
   const [isLoading, setIsLoading] = useState(true);
+ const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const [formStatus, setFormStatus] = useState('');
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // Set the loading time to 2 seconds
-    return () => clearTimeout(timer); // Cleanup the timer when component unmounts
+    }, 2000); 
+    return () => clearTimeout(timer); 
   }, []);
 
   if (isLoading) {
     return <Loading />;
   }
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    if (!name || !email || !message) {
+      setFormStatus('All fields are required!');
+      return;
+    }
+  
+    try {
+
+  
+      const { data, error } = await supabase
+        .from('contacts') 
+        .insert([
+          {
+            name: name.substring(0, 36),
+            email: email.substring(0, 50),
+            message: message.substring(0, 1000),
+          },
+        ]);
+  
+      if (error) {
+        setFormStatus('Error submitting the form. Please try again later.');
+        console.error(error);
+      } else {
+        // Hide the loading spinner
+        setIsLoading(false);
+  
+        // Show success alert with SweetAlert
+        Swal.fire({
+          text: 'Thank you for reaching out!',
+          icon: 'success',
+          confirmButtonText: 'OK',
+        });
+  
+        // Reset the form fields after success
+        setName('');
+        setEmail('');
+        setMessage('');
+      }
+    } catch (error) {
+      setIsLoading(false);
+      setFormStatus('An unexpected error occurred. Please try again later.');
+      console.error(error);
+    }
+  };
+  
 
   return (
     <div className="portfolio">
@@ -149,7 +204,7 @@ function Portfolio() {
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Contact Section
       <section id="contact" className="contact py-5">
         <div className="container">
           <h2 className="text-center text-white mb-5">Get in Touch</h2>
@@ -197,8 +252,69 @@ function Portfolio() {
             </div>
           </form>
         </div>
+      </section> */}
+ {/* Contact Section */}
+ <section id="contact" className="contact py-5">
+        <div className="container">
+          <h2 className="text-center text-white mb-5">Get in Touch</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="row mb-3">
+              <div className="col-md-6">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Your Name"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  minLength="2"
+                  maxLength="36"
+                  onInput={(e) => {
+                    e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, '');
+                  }}
+                  title="Name should only contain letters and spaces"
+                />
+              </div>
+              <div className="col-md-6">
+                <input
+                  type="email"
+                  className="form-control"
+                  placeholder="Your Email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  minLength="5"
+                  maxLength="50"
+                  title="Please enter a valid email address"
+                />
+              </div>
+            </div>
+            <div className="mb-3">
+              <textarea
+                className="form-control"
+                rows="5"
+                placeholder="Your Message"
+                required
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                minLength="10"
+                maxLength="500"
+                title="Message should be between 10 and 500 characters"
+              ></textarea>
+            </div>
+            <div className="text-center">
+              <button type="submit" className="btn btn-success" disabled={isLoading}>
+                {isLoading ? 'Sending...' : 'Send Message'}
+              </button>
+            </div>
+          </form>
+          {formStatus && (
+            <div className="mt-3 text-center text-white">
+              <p>{formStatus}</p>
+            </div>
+          )}
+        </div>
       </section>
-
       {/* Footer Section */}
       <footer className="footer py-4 bg-dark text-white">
         <div className="container text-center">
