@@ -267,7 +267,7 @@ const handleSubmit = async (e) => {
           <p>If you'd like to get in touch, feel free to reach out via email or connect with me on LinkedIn:</p>
           <ul className="list-unstyled">
             <li>Email: <a href="mailto:pavankumarpk8002@gmail.com" className="text-success">pavankumarpk8002@gmail.com</a></li>
-            <li>LinkedIn: <a href="https://www.linkedin.com/in/pavan-kumar-086677235" target="_blank" rel="noopener noreferrer" className="text-success">pavan-kumar</a></li>
+            <li>LinkedIn: <a href="http://linkedin.com/in/pavan-kumar-n-086677235" target="_blank" rel="noopener noreferrer" className="text-success">pavan-kumar</a></li>
           </ul>
         </div>
       </footer>
