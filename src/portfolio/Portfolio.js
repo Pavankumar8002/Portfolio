@@ -43,7 +43,6 @@ function Portfolio() {
 const handleSubmit = async (e) => {
   e.preventDefault();
 
-  // Check if all fields are filled
   if (!name || !email || !message) {
     setFormStatus('All fields are required!');
     return;
@@ -60,20 +59,15 @@ const handleSubmit = async (e) => {
           message: message.substring(0, 1000),
         },
       ]);
-
-    // Handle the form submission response
     if (error) {
       setFormStatus('Error submitting the form. Please try again later.');
       console.error(error);
     } else {
-      // Show success message
       Swal.fire({
         text: 'Thank you for reaching out!',
         icon: 'success',
         confirmButtonText: 'OK',
       });
-
-      // Reset the form fields after success
       setName('');
       setEmail('');
       setMessage('');
@@ -82,7 +76,6 @@ const handleSubmit = async (e) => {
     setFormStatus('An unexpected error occurred. Please try again later.');
     console.error(error);
   } finally {
-    // Hide the loading state after submission, regardless of success or failure
     setIsLoading(false);
   }
 };
@@ -204,55 +197,6 @@ const handleSubmit = async (e) => {
         </div>
       </section>
 
-      {/* Contact Section
-      <section id="contact" className="contact py-5">
-        <div className="container">
-          <h2 className="text-center text-white mb-5">Get in Touch</h2>
-          <form>
-            <div className="row mb-3">
-              <div className="col-md-6">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Your Name"
-                  required
-                  minLength="2"
-                  maxLength="36"
-                  onInput={(e) => {
-                    e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, '');
-                  }}
-                  title="Name should only contain letters and spaces"
-                />
-              </div>
-              <div className="col-md-6">
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Your Email"
-                  required
-                  minLength="5"
-                  maxLength="50"
-                  title="Please enter a valid email address"
-                />
-              </div>
-            </div>
-            <div className="mb-3">
-              <textarea
-                className="form-control"
-                rows="5"
-                placeholder="Your Message"
-                required
-                minLength="10"
-                maxLength="500"
-                title="Message should be between 10 and 500 characters"
-              ></textarea>
-            </div>
-            <div className="text-center">
-              <button type="submit" className="btn btn-success">Send Message</button>
-            </div>
-          </form>
-        </div>
-      </section> */}
  {/* Contact Section */}
  <section id="contact" className="contact py-5">
         <div className="container">
@@ -275,6 +219,8 @@ const handleSubmit = async (e) => {
                   title="Name should only contain letters and spaces"
                 />
               </div>
+              <br/>
+              <br/>
               <div className="col-md-6">
                 <input
                   type="email"

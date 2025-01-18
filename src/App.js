@@ -1,12 +1,10 @@
-// /Users/Pavankumarn/projectfilereact/PersonalBlog/src/App.js
-
 import React from 'react';
-import RoutesConfig from './routes';  // Import RoutesConfig
+import RoutesConfig from './routes';  
 
 function App() {
   return (
     <div className="App">
-      <RoutesConfig />  {/* Use the routing configuration */}
+      <RoutesConfig />  
     </div>
   );
 }
