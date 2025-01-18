@@ -48,7 +48,7 @@ const handleSubmit = async (e) => {
   }
 
   try {
-    // Show loading spinner while submitting (this will be removed later)
+
     setIsLoading(true);
 
     const { error } = await supabase
