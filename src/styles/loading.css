@@ -15,9 +15,9 @@
 
 .loading-text {
   font-family: 'Dancing Script', cursive;
-  font-size: 3rem; /* Increased size for visibility */
-  font-weight: 700; /* Bold weight for the text */
-  letter-spacing: 1px; /* Slight spacing between the letters */
+  font-size: 3rem; 
+  font-weight: 700; 
+  letter-spacing: 1px; 
   text-align: center;
   animation: fadeInSlideUp 2s ease-in-out, scaleUp 1.5s ease-out infinite alternate;
 }
