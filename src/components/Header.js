@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import '../styles/common.css';
+import '../styles/common.css';  
 
 function Header() {
   return (
@@ -8,7 +8,12 @@ function Header() {
       <nav>
         <div className="nav-left">
           <span className="site-name">
-            <span className="first-name">Pavan</span>
+            <NavLink 
+              to="/contacts"
+              className={({ isActive }) => isActive ? '' : ''} 
+            >
+              <span className="first-name">Pavan</span>
+            </NavLink>
             <span className="last-name">Kumar</span>
           </span>
         </div>

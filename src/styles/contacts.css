@@ -1,5 +1,3 @@
-/* Contacts.css */
-
 /* Overall page style */
 .contacts-container {
     font-family: Arial, sans-serif;
@@ -8,66 +6,68 @@
     max-width: 1200px;
     margin: 0 auto;
     box-sizing: border-box;
-  }
-  
-  /* Table container */
-  .contacts-table {
+    overflow: hidden; /* Prevent overflow on the main container */
+}
+
+/* Contacts Table Style */
+.contacts-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 30px;
     border: 1px solid #ddd;
     background-color: #f9f9f9;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    table-layout: fixed;
-  }
-  
-  /* Table header style */
-  .contacts-table th {
+    table-layout: auto; /* Make the table more flexible */
+}
+
+/* Table header style */
+.contacts-table th {
     background-color: #4b4b4b;
     color: white;
     padding: 12px 15px;
     text-align: left;
     font-size: 1.1em;
     word-wrap: break-word;
-  }
-  
-  /* Table row style */
-  .contacts-table td {
+}
+
+/* Table row style */
+.contacts-table td {
     padding: 12px 15px;
     text-align: left;
     border-top: 1px solid #ddd;
     font-size: 1em;
     word-wrap: break-word;
-  }
-  
-  /* Zebra striping for table rows */
-  .contacts-table tbody tr:nth-child(even) {
+}
+
+/* Zebra striping for table rows */
+.contacts-table tbody tr:nth-child(even) {
     background-color: #f3f3f3;
-  }
-  
-  /* Hover effect on table rows */
-  .contacts-table tbody tr:hover {
+}
+
+/* Hover effect on table rows */
+.contacts-table tbody tr:hover {
     background-color: #e2e2e2;
     cursor: pointer;
-  }
-  
-  /* Loading text and error styling */
-  .contacts-loading,
-  .contacts-error {
+}
+
+/* Loading text and error styling */
+.contacts-loading,
+.contacts-error {
     text-align: center;
     font-size: 1.2em;
     margin-top: 50px;
-  }
-  
-  /* Heading style */
-  .contacts-heading {
+}
+
+/* Heading style */
+.contacts-heading {
     color: #333;
     font-size: 2em;
     margin-bottom: 20px;
-  }
-  
-  /* Delete button style */
-  .delete-btn {
+    text-align: center; /* Center-align heading */
+}
+
+/* Delete button style */
+.delete-btn {
     background-color: #f44336;
     color: white;
     border: none;
@@ -75,57 +75,11 @@
     font-size: 0.9em;
     cursor: pointer;
     border-radius: 5px;
-  }
-  
-  .delete-btn:hover {
+}
+
+.delete-btn:hover {
     background-color: #d32f2f;
-  }
-  
-  /* -------- Responsive Design -------- */
-  
-  /* For tablets (min-width: 768px) */
-  @media (max-width: 768px) {
-    .contacts-heading {
-      font-size: 1.8em;
-    }
-  
-    .contacts-table {
-      font-size: 0.9em;
-    }
-  
-    .contacts-table th,
-    .contacts-table td {
-      padding: 10px;
-    }
-  }
-  
-  /* For mobile devices (max-width: 480px) */
-  @media (max-width: 480px) {
-    .contacts-container {
-      padding: 10px;
-    }
-  
-    .contacts-table {
-      font-size: 0.85em;
-    }
-  
-    .contacts-table th,
-    .contacts-table td {
-      display: block;
-      text-align: right;
-      padding: 8px;
-      border: 1px solid #ddd;
-    }
-  
-    .contacts-table tbody tr {
-      margin-bottom: 10px;
-    }
-  
-    .contacts-heading {
-      font-size: 1.5em;
-    }
-  }
-  /* Contacts.css */
+}
 
 /* Export button style */
 .export-btn {
@@ -141,67 +95,133 @@
     width: 200px;
     margin-left: auto;
     margin-right: auto;
-  }
-  
-  .export-btn:hover {
+}
+
+.export-btn:hover {
     background-color: #45a049;
-  }
-  
-  .contacts-container {
-    font-family: Arial, sans-serif;
-    color: #333;
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    box-sizing: border-box;
-  }
-  
-  .contacts-table {
+}
+
+/* -------- Responsive Design -------- */
+
+/* For tablets (max-width: 768px) */
+@media (max-width: 768px) {
+    .contacts-heading {
+        font-size: 1.8em;
+    }
+
+    .contacts-table {
+        font-size: 0.9em;
+    }
+
+    .contacts-table th,
+    .contacts-table td {
+        padding: 10px;
+    }
+
+    .contacts-container {
+        padding: 10px;
+    }
+}
+
+/* For mobile devices (max-width: 480px) */
+@media (max-width: 480px) {
+    .contacts-container {
+        padding: 10px;
+    }
+
+    /* Table becomes scrollable on mobile */
+    .contacts-table {
+        font-size: 0.85em;
+        display: block;
+        overflow-x: auto; /* Enable horizontal scroll if the table is too wide */
+        width: 100%;
+    }
+
+    /* Table header */
+    .contacts-table th {
+        display: none; /* Hide headers on mobile */
+    }
+
+    /* For table rows on mobile, each td becomes block-level and labeled */
+    .contacts-table td {
+        display: block;
+        text-align: left;
+        position: relative;
+        padding: 8px;
+        border: 1px solid #ddd;
+        width: 100%;
+    }
+
+    /* Add space for each cell label */
+    .contacts-table td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 5px;
+        color: #555;
+    }
+
+    /* Improve alignment of form labels and inputs for mobile */
+    .contacts-heading {
+        font-size: 1.5em;
+        text-align: left; /* Left-align heading on mobile */
+    }
+}
+
+/* Styling for the login form */
+form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 30px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    table-layout: fixed;
-  }
-  
-  .contacts-table th {
-    background-color: #4b4b4b;
-    color: white;
-    padding: 12px 15px;
-    text-align: left;
-    font-size: 1.1em;
-    word-wrap: break-word;
-  }
-  
-  .contacts-table td {
-    padding: 12px 15px;
-    text-align: left;
-    border-top: 1px solid #ddd;
+    max-width: 400px; /* Set a maximum width for the form */
+    margin: 0 auto; /* Center the form */
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
     font-size: 1em;
-    word-wrap: break-word;
-  }
-  
-  .contacts-table tbody tr:nth-child(even) {
-    background-color: #f3f3f3;
-  }
-  
-  .contacts-table tbody tr:hover {
-    background-color: #e2e2e2;
-    cursor: pointer;
-  }
-  
-  .contacts-loading,
-  .contacts-error {
-    text-align: center;
-    font-size: 1.2em;
-    margin-top: 50px;
-  }
-  
-  .contacts-heading {
     color: #333;
-    font-size: 2em;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
     margin-bottom: 20px;
-  }
-  
+    border: 1px solid #ccc;
+    border-radius: 6px; /* Rounded input fields */
+    font-size: 1em;
+    box-sizing: border-box; /* Ensure padding doesn’t affect width */
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #4CAF50; /* Green border on focus */
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px; /* Rounded button */
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049; /* Slightly darker green on hover */
+}
+
+.login-error {
+    color: red;
+    margin-top: 10px;
+    font-size: 0.9em;
+    text-align: center;
+}

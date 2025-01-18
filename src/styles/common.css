@@ -1,4 +1,4 @@
-
+/* Import the Dancing Script font for "Pavan" and "Kumar" */
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
 
 body {
@@ -32,45 +32,45 @@ p {
 
 header {
     width: 100%;
-    background-color: transparent; 
+    background-color: transparent;
     padding: 10px 0;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 100;
-    box-shadow: none; 
+    box-shadow: none;
 }
 
 nav {
     display: flex;
-    justify-content: space-between; 
-    align-items: center; 
+    justify-content: space-between;
+    align-items: center;
     padding: 0 20px;
 }
 
 .nav-left {
-    font-family: 'Roboto', sans-serif; 
+    font-family: 'Roboto', sans-serif;
     color: #fff;
-    font-size: 1.6rem; 
+    font-size: 1.6rem;
     font-weight: bold;
 }
 
 .site-name {
     display: flex;
     align-items: center;
-    font-size: 2rem; 
+    font-size: 2rem;
 }
 
 .first-name {
     color: #fff;
-    font-family: 'Dancing Script', cursive; 
+    font-family: 'Dancing Script', cursive;
     font-weight: 700;
     letter-spacing: 1px;
 }
 
 .last-name {
-    color: #808080; 
-    font-family: 'Dancing Script', cursive; 
+    color: #808080;
+    font-family: 'Dancing Script', cursive;
     font-weight: 400;
     letter-spacing: 0.5px;
 }
@@ -86,30 +86,29 @@ nav li {
     margin: 0 15px;
 }
 
-
 nav a, nav .active-link {
     color: #fff;
-    text-decoration: none; 
+    text-decoration: none;
     font-size: 1.2rem;
     padding: 8px 15px;
     border-radius: 4px;
     transition: background-color 0.3s ease;
 }
 
-
+/* For active state styling */
 nav .active-link {
     background-color: #555;
     color: #fff;
     font-weight: bold;
 }
 
-
+/* Hover effects */
 nav a:hover, nav .active-link:hover {
     background-color: #4CAF50;
-    text-decoration: none !important; 
+    text-decoration: none !important;
 }
 
-
+/* Responsive Design */
 @media screen and (max-width: 768px) {
     .main-container {
         width: 95%;
@@ -140,3 +139,38 @@ nav a:hover, nav .active-link:hover {
         padding: 10px 20px;
     }
 }
+
+/* Specific Styling for 'Pavan' in the header */
+
+/* Ensure 'Pavan' in NavLink doesn't alter the styling */
+.first-name-link {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit text color */
+}
+
+/* Keep 'Pavan' size consistent without enlarging */
+.first-name {
+    font-size: 2rem; /* Keep the same size as before */
+    font-weight: bold; /* Keep 'Pavan' bold */
+    letter-spacing: 1px;
+}
+
+/* Keep 'Kumar' styling consistent */
+.last-name {
+    font-size: 2rem; /* Same font size as 'Pavan' */
+    font-weight: normal; /* Keep 'Kumar' normal weight */
+    letter-spacing: 0.5px;
+}
+
+/* Ensure no highlighting when clicking 'Pavan' */
+.first-name:hover {
+    background: none; /* Prevent hover effect from changing background */
+    cursor: pointer; /* Indicate clickable without highlight */
+}
+
+/* Remove underline and highlight from NavLink */
+nav a {
+    color: inherit; /* Keep links with the default color */
+    text-decoration: none; /* Remove underline from other links */
+}
+
