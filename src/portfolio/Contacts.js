@@ -12,7 +12,7 @@ const Contacts = () => {
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
 
-  // Fetch contacts from the database
+
   useEffect(() => {
     if (loggedIn) {
       const fetchContacts = async () => {

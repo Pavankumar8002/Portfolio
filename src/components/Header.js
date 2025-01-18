@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import '../styles/common.css';  
-
+// changes
 function Header() {
   return (
     <header>

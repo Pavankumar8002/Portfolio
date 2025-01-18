@@ -140,9 +140,7 @@ nav a:hover, nav .active-link:hover {
     }
 }
 
-/* Specific Styling for 'Pavan' in the header */
 
-/* Ensure 'Pavan' in NavLink doesn't alter the styling */
 .first-name-link {
     text-decoration: none; /* Remove underline */
     color: inherit; /* Inherit text color */
