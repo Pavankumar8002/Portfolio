@@ -40,50 +40,53 @@ function Portfolio() {
   }
 
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    if (!name || !email || !message) {
-      setFormStatus('All fields are required!');
-      return;
-    }
-  
-    try {
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-      const { data, error } = await supabase
-        .from('contacts') 
-        .insert([
-          {
-            name: name.substring(0, 36),
-            email: email.substring(0, 50),
-            message: message.substring(0, 1000),
-          },
-        ]);
+  // Check if all fields are filled
+  if (!name || !email || !message) {
+    setFormStatus('All fields are required!');
+    return;
+  }
+
+  try {
   
-      if (error) {
-        setFormStatus('Error submitting the form. Please try again later.');
-        console.error(error);
-      } else {
-        // Hide the loading spinner
-        setIsLoading(false);
-  
-        // Show success alert with SweetAlert
-        Swal.fire({
-          text: 'Thank you for reaching out!',
-          icon: 'success',
-          confirmButtonText: 'OK',
-        });
-        setName('');
-        setEmail('');
-        setMessage('');
-      }
-    } catch (error) {
-      setIsLoading(false);
-      setFormStatus('An unexpected error occurred. Please try again later.');
+    const { error } = await supabase
+      .from('contacts') 
+      .insert([
+        {
+          name: name.substring(0, 36),
+          email: email.substring(0, 50),
+          message: message.substring(0, 1000),
+        },
+      ]);
+
+    // Handle the form submission response
+    if (error) {
+      setFormStatus('Error submitting the form. Please try again later.');
       console.error(error);
+    } else {
+      // Show success message
+      Swal.fire({
+        text: 'Thank you for reaching out!',
+        icon: 'success',
+        confirmButtonText: 'OK',
+      });
+
+      // Reset the form fields after success
+      setName('');
+      setEmail('');
+      setMessage('');
     }
-  };
-  
+  } catch (error) {
+    setFormStatus('An unexpected error occurred. Please try again later.');
+    console.error(error);
+  } finally {
+    // Hide the loading state after submission, regardless of success or failure
+    setIsLoading(false);
+  }
+};
+
 
   return (
     <div className="portfolio">
