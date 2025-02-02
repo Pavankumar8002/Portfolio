@@ -263,14 +263,20 @@ const handleSubmit = async (e) => {
       </section>
       {/* Footer Section */}
       <footer className="footer py-4 bg-dark text-white">
-        <div className="container text-center">
-          <p>If you'd like to get in touch, feel free to reach out via email or connect with me on LinkedIn:</p>
-          <ul className="list-unstyled">
-            <li>Email: <a href="mailto:pavankumarpk8002@gmail.com" className="text-success">pavankumarpk8002@gmail.com</a></li>
-            <li>LinkedIn: <a href="http://linkedin.com/in/pavan-kumar-n-086677235" target="_blank" rel="noopener noreferrer" className="text-success">pavan-kumar</a></li>
-          </ul>
-        </div>
-      </footer>
+  <div className="container text-center">
+    <p>If you'd like to get in touch, feel free to reach out via email or connect with me on LinkedIn:</p>
+    <ul className="list-unstyled">
+      <li>Email: <a href="mailto:pavankumarpk8002@gmail.com" className="text-success">pavankumarpk8002@gmail.com</a></li>
+      <li>LinkedIn: <a href="http://linkedin.com/in/pavan-kumar-n-086677235" target="_blank" rel="noopener noreferrer" className="text-success">pavan-kumar</a></li>
+      <li>Instagram: 
+        <a href="https://www.instagram.com/pavan._.nagaraj_22?igsh=MXQwd3RobnRxN21pMg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="text-success">
+          <i className="fab fa-instagram"></i> {/* Instagram icon */}
+        </a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
     </div>
   );
 }
