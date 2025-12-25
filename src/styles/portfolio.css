@@ -462,20 +462,43 @@ section {
 }
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE FOOTER FIX
 ========================================================= */
 @media (max-width: 768px) {
+  .slytherin-footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px; /* spacing between sections */
+  }
+
   .footer-contact,
   .footer-brand,
   .footer-qr {
     text-align: center;
-    margin-bottom: 35px;
+    width: 100%;
+    margin-bottom: 0; /* gap handles spacing */
+  }
+
+  .footer-socials {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* wrap icons to next line if needed */
+    gap: 15px;
+    margin-top: 10px;
   }
 
   .footer-socials a {
-    margin: 0 12px;
+    font-size: 1.5rem;
+    margin: 0; /* remove original margin to avoid overlap */
+  }
+
+  .qr-box img {
+    width: 100px;
+    height: 100px;
   }
 }
+
 
 /* =========================================================
    WAND LIGHT STREAK EFFECT
