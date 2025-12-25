@@ -8,12 +8,7 @@ function Header() {
       <nav>
         <div className="nav-left">
           <span className="site-name">
-            <NavLink 
-              to="/contacts"
-              className={({ isActive }) => isActive ? '' : ''} 
-            >
               <span className="first-name">Pavan</span>
-            </NavLink>
             <span className="last-name">Kumar</span>
           </span>
         </div>

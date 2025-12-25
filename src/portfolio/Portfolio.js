@@ -1,284 +1,406 @@
-import React, { useState, useEffect } from 'react';
-import Header from '../components/Header';
-import Marquee from '../components/Marquee';
-import '../styles/portfolio.css';
-import Loading from '../components/Loading';
-import { supabase } from './supabaseClient'; 
-import Swal from 'sweetalert2';
+import React, { useState, useEffect } from "react";
+import Header from "../components/Header";
+import Marquee from "../components/Marquee";
+import Loading from "../components/Loading";
+import "../styles/portfolio.css";
+import axios from "axios";
+import Swal from "sweetalert2";
+
 const images = [
-  '/Pictures/java.png',
-  '/Pictures/react.png',
-  '/Pictures/Net.svg',
-  '/Pictures/pgsql.png',
-  '/Pictures/js.png',
-  '/Pictures/css.png',
-  '/Pictures/html.png',
-  '/Pictures/c.png',
-  '/Pictures/cpp.png',
-  '/Pictures/oracle.png',
-  '/Pictures/mysql.png',
-  '/Pictures/gitlab.svg',
+  "/Pictures/java.png",
+  "/Pictures/react.png",
+  "/Pictures/Net.svg",
+  "/Pictures/pgsql.png",
+  "/Pictures/js.png",
+  "/Pictures/css.png",
+  "/Pictures/html.png",
+  "/Pictures/c.png",
+  "/Pictures/cpp.png",
+  "/Pictures/oracle.png",
+  "/Pictures/mysql.png",
+  "/Pictures/gitlab.svg",
 ];
 
 function Portfolio() {
-  const [isLoading, setIsLoading] = useState(true);
- const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  // Page loading (initial)
+  const [pageLoading, setPageLoading] = useState(true);
 
-  const [formStatus, setFormStatus] = useState('');
+  // Form loading
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Form fields
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const [formStatus, setFormStatus] = useState("");
+
+  const API_BASE_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000); 
-    return () => clearTimeout(timer); 
+      setPageLoading(false);
+    }, 1500);
+    return () => clearTimeout(timer);
   }, []);
 
-  if (isLoading) {
+  if (pageLoading) {
     return <Loading />;
   }
 
-
-const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  if (!name || !email || !message) {
-    setFormStatus('All fields are required!');
-    return;
-  }
-
-  try {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setFormStatus("");
   
-    const { error } = await supabase
-      .from('contacts') 
-      .insert([
+    if (!name || !email || !message) {
+      Swal.fire({
+        icon: "warning",
+        text: "All fields are required!",
+        background: "radial-gradient(circle at top, #0f2a1e, #050c09)",
+        color: "#e6f3ec",
+        confirmButtonText: "Understood",
+        confirmButtonColor: "#1c5d3a",
+        iconColor: "#78cfa0",
+      });
+      return;
+    }
+  
+    setIsSubmitting(true);
+  
+    try {
+      const response = await axios.post(
+        `${API_BASE_URL}/PortfolioEnquery/PostPortfolioEnquiry`,
         {
           name: name.substring(0, 36),
           email: email.substring(0, 50),
           message: message.substring(0, 1000),
-        },
-      ]);
-    if (error) {
-      setFormStatus('Error submitting the form. Please try again later.');
+        }
+      );
+  
+      // 🐍 STOP LOADER BEFORE ALERT
+      setIsSubmitting(false);
+  
+      if (response.data?.status === 1) {
+        await Swal.fire({
+          title: "Sssent… 🐍",
+          html: `
+            <div style="
+              font-family: 'Montserrat', sans-serif;
+              letter-spacing: 1px;
+              line-height: 1.8;
+            ">
+              <p style="font-size: 1.1rem; color:#78cfa0;">
+                <em>Ssshaaa… your message hasss been heard.</em>
+              </p>
+              <p style="color:#a7c7b7; margin-top:12px;">
+                The Slytherin wards now guard your words.<br/>
+                I shall respond ssssoon…
+              </p>
+            </div>
+          `,
+          background: "radial-gradient(circle at top, #0f2a1e, #050c09)",
+          color: "#e6f3ec",
+          icon: "success",
+          iconColor: "#78cfa0",
+          confirmButtonText: "Sssilence the wards",
+          confirmButtonColor: "#1c5d3a",
+          allowOutsideClick: false,
+          showClass: {
+            popup: "animate__animated animate__fadeInDown"
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp"
+          }
+        });
+        
+  
+        setName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        Swal.fire({
+          icon: "error",
+          text: response.data?.message || "Submission failed.",
+          background: "radial-gradient(circle at top, #0f2a1e, #050c09)",
+          color: "#e6f3ec",
+          confirmButtonColor: "#1c5d3a",
+          iconColor: "#78cfa0",
+        });
+      }
+    } catch (error) {
       console.error(error);
-    } else {
+      setIsSubmitting(false);
+  
       Swal.fire({
-        text: 'Thank you for reaching out!',
-        icon: 'success',
-        confirmButtonText: 'OK',
+        icon: "error",
+        text: "Server error. Please try again later.",
+        background: "radial-gradient(circle at top, #0f2a1e, #050c09)",
+        color: "#e6f3ec",
+        confirmButtonColor: "#1c5d3a",
+        iconColor: "#78cfa0",
       });
-      setName('');
-      setEmail('');
-      setMessage('');
     }
-  } catch (error) {
-    setFormStatus('An unexpected error occurred. Please try again later.');
-    console.error(error);
-  } finally {
-    setIsLoading(false);
-  }
-};
-
-// updated
+  };
+  
+  
   return (
     <div className="portfolio">
+  
       <Header />
-
-      {/* About Me Section */}
-      <section id="about-me" className="about-me py-5 bg-dark text-white">
+  
+      {/* HERO SECTION */}
+      <section className="hero-section d-flex align-items-center">
+        <div className="container text-center">
+          <br></br>
+          <p className="hero-subtitle">
+            Full Stack Developer • React • .NET • PostgreSQL
+          </p>
+        </div>
+      </section>
+  
+      {/* ABOUT */}
+      <section className="about-me py-5">
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-md-6 mb-4 mb-md-0">
-              <div className="about-image-container rounded-3 overflow-hidden shadow-lg">
-                <img src="/Pictures/image.png" alt="Cover" className="about-image img-fluid" />
-              </div>
+            <div className="col-md-5 mb-4">
+              <img
+                src="/Pictures/picture.jpeg"
+                alt="Profile"
+                className="about-image"
+              />
             </div>
-            <div className="col-md-6">
-              <div className="about-text-container">
-                <h2 className="text-white">Who I Am and What I Do?</h2>
-                <p className="text-light">
-                  Hello! I'm Pavan Kumar, a passionate full stack developer with experience in creating dynamic,
-                  user-friendly websites using React.js, HTML, CSS, and JavaScript. I enjoy building responsive,
-                  efficient, and engaging web applications that provide an excellent user experience.
-                </p>
-              </div>
+            <div className="col-md-7">
+              <h2>About Me</h2>
+              <p>
+                I’m a <strong>Full Stack Developer</strong> passionate about building
+                scalable, clean, and high-performance web applications.
+                I specialize in <strong>React, .NET, PostgreSQL</strong> and love
+                solving real-world problems with code.
+              </p>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Marquee Section */}
-      <section className="marquee-section py-5">
+  
+      {/* TECH MARQUEE */}
+      <section className="py-4">
         <Marquee images={images} />
       </section>
+  
+{/* SKILLS */}
+<section className="skills-section">
+  <div className="container">
+    <h2 className="section-title text-center">Skills & Tools</h2>
 
-      {/* Skills Section */}
-      <section id="skills" className="skills py-5">
-        <div className="container">
-          <h2 className="text-center text-white mb-5">What I Bring to the Table</h2>
-          <div className="row">
-            {[
-              { title: 'React.js', description: 'Building dynamic, modern web applications with React, using hooks and state management.' },
-              { title: 'Python', description: 'Experienced in building APIs, data processing, and automation scripts with Python.' },
-              { title: 'JavaScript (ES6+)', description: 'Proficient in modern JavaScript, including ES6+ features and asynchronous programming.' },
-              { title: 'HTML5 & CSS3', description: 'Creating semantic and responsive web pages using HTML5 and CSS3, with a focus on accessibility.' },
-              { title: 'Responsive Design', description: 'Building responsive, mobile-first websites that adapt seamlessly across all devices.' },
-              { title: 'Git & GitHub', description: 'Version control and collaboration through Git and GitHub, managing branches and pull requests.' },
-              { title: '.NET (C#)', description: 'Knowledge of backend development with .NET, focusing on web APIs and services.' },
-              { title: 'MVC Pattern', description: 'Understanding and implementing the Model-View-Controller design pattern in web applications.' },
-              { title: 'PostgreSQL & MySQL', description: 'Experience with relational databases, including writing complex queries and database design.' },
-              { title: 'Java', description: 'Proficient in object-oriented programming and building applications in Java.' },
-              { title: 'C & C++', description: 'Familiar with systems programming, data structures, and algorithms in C and C++.' },
-              { title: 'PHP', description: 'Experienced in building dynamic server-side applications and APIs with PHP.' },
-            ].map((skill, index) => (
-              <div className="col-md-4 mb-4" key={index}>
-                <div className="card h-100 shadow-sm">
-                  <div className="card-body">
-                    <h5 className="card-title">{skill.title}</h5>
-                    <p className="card-text">{skill.description}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+    <div className="row justify-content-center">
+      {[
+        "React.js",
+        "JavaScript",
+        ".NET (C#)",
+        "PostgreSQL",
+        "HTML & CSS",
+        "Git & GitHub",
+        "Java",
+        "Python",
+      ].map((skill, i) => (
+        <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={i}>
+          <div className="skill-card">
+            <span>{skill}</span>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
-      {/* Experience Section */}
-      <section id="experience" className="experience py-5 bg-dark text-white">
-        <div className="container">
-          <h2 className="text-center mb-5" style={{ color: '#000000' }}>Experience</h2>
-          <div className="row">
-            <div className="col-md-6 mb-4">
-              <div className="experience-item bg-secondary p-4 rounded-3 shadow">
-                <h3 style={{ color: '#000000' }}>Junior Software Engineer</h3>
-                <p style={{ color: '#000000' }}><strong>Idea Infinity IT Solution Pvt Ltd</strong> - July 2024 to Present</p>
-                <p>Working as a Junior Software Engineer, contributing to backend and frontend development using technologies such as .NET, React, JavaScript, and databases (PostgreSQL/MySQL). Responsible for developing and maintaining APIs and dynamic web applications.</p>
-              </div>
-            </div>
-            <div className="col-md-6 mb-4">
-              <div className="experience-item bg-secondary p-4 rounded-3 shadow">
-                <h3 style={{ color: '#000000' }}>Full Stack Developer Intern</h3>
-                <p style={{ color: '#000000' }}><strong>ProGlobal Software Pvt Ltd</strong> - August 2023 to December 2023</p>
-                <p>Worked as a Full Stack Developer Intern, where I contributed to both frontend and backend tasks. Developed dynamic user interfaces using React.js and integrated RESTful APIs for seamless data flow. Gained hands-on experience in full-stack development in an Agile environment.</p>
-              </div>
-            </div>
+{/* PROJECTS */}
+<section className="projects-section">
+  <div className="container">
+    <h2 className="section-title text-center">Projects</h2>
+
+    <div className="row justify-content-center">
+      {[
+        {
+          title: "Portfolio Website",
+          desc: "Modern React-based personal portfolio with dark UI.",
+          link: "https://github.com/Pavankumar8002/Portfolio",
+        },
+        {
+          title: "VoiceBot",
+          desc: "Python-based AI voice assistant with voice commands.",
+          link: "https://github.com/Pavankumar8002/VoiceBot",
+        },
+      ].map((p, i) => (
+        <div className="col-lg-5 col-md-6 mb-4" key={i}>
+          <div className="project-card">
+            <h4>{p.title}</h4>
+            <p>{p.desc}</p>
+
+            <a
+              href={p.link}
+              target="_blank"
+              rel="noreferrer"
+              className="project-link"
+            >
+              View on GitHub →
+            </a>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
-      {/* Projects Section */}
-      <section id="projects" className="projects py-5">
+  
+      {/* CONTACT */}
+      <section id="contact" className="contact py-5">
         <div className="container">
-          <h2 className="text-center mb-5">Projects</h2>
-          <div className="row">
-            {[
-              {
-                title: 'Portfolio Website',
-                description: 'A responsive portfolio website built with React.js. It showcases my skills, experience, and projects, offering smooth navigation and a modern design. Fully responsive this project highlights my expertise in front-end development and creating user-centric web applications.',
-                link: 'https://github.com/Pavankumar8002/Portfolio',
-              },
-              {
-                title: 'VoiceBot',
-                description: 'A Python-based intelligent virtual assistant that uses voice recognition and semantic data to perform tasks like answering questions, setting reminders, and researching. It demonstrates my skills in AI, natural language processing, and building hands-free, productivity-enhancing applications.',
-                link: 'https://github.com/Pavankumar8002/VoiceBot',
-              },
-            ].map((project, index) => (
-              <div className="col-md-6 mb-4" key={index}>
-                <div className="project-item bg-secondary p-4 rounded-3 shadow">
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="btn btn-link text-success">GitHub</a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
- {/* Contact Section */}
- <section id="contact" className="contact py-5">
-        <div className="container">
-          <h2 className="text-center text-white mb-5">Get in Touch</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="row mb-3">
-              <div className="col-md-6">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Your Name"
-                  required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  minLength="2"
-                  maxLength="36"
-                  onInput={(e) => {
-                    e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, '');
-                  }}
-                  title="Name should only contain letters and spaces"
-                />
-              </div>
-              <br/>
-              <br/>
-              <div className="col-md-6">
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Your Email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  minLength="5"
-                  maxLength="50"
-                  title="Please enter a valid email address"
-                />
-              </div>
-            </div>
-            <div className="mb-3">
-              <textarea
-                className="form-control"
-                rows="5"
-                placeholder="Your Message"
+          <h2 className="text-center mb-4">Get In Touch</h2>
+  
+          <div className="contact-card glass">
+            <form onSubmit={handleSubmit}>
+              <input
+                className="form-control mb-3"
+                placeholder="Your Name"
+                value={name}
+                onChange={(e) =>
+                  setName(e.target.value.replace(/[^A-Za-z\s]/g, ""))
+                }
                 required
+              />
+  
+              <input
+                className="form-control mb-3"
+                type="email"
+                placeholder="Your Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+  
+              <textarea
+                className="form-control mb-3"
+                rows="4"
+                placeholder="Your Message"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                minLength="10"
-                maxLength="500"
-                title="Message should be between 10 and 500 characters"
-              ></textarea>
-            </div>
-            <div className="text-center">
-              <button type="submit" className="btn btn-success" disabled={isLoading}>
-                {isLoading ? 'Sending...' : 'Send Message'}
-              </button>
-            </div>
-          </form>
-          {formStatus && (
-            <div className="mt-3 text-center text-white">
-              <p>{formStatus}</p>
-            </div>
-          )}
+                required
+              />
+  
+              {/* <button
+                className="btn btn-success w-100"
+                type="submit"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Sending..." : "Send Message"}
+              </button> */}
+              <button
+  className="btn btn-success w-100 slytherin-btn"
+  type="submit"
+  disabled={isSubmitting}
+>
+  {isSubmitting ? (
+    <span className="slytherin-loader">
+      <span className="snake-head"></span>
+      <span className="snake-body"></span>
+      <span className="snake-tail"></span>
+      <span className="loader-text">Summoning...</span>
+    </span>
+  ) : (
+    "Send Message"
+  )}
+</button>
+
+            </form>
+  
+            {formStatus && (
+              <p className="text-center mt-3">{formStatus}</p>
+            )}
+          </div>
         </div>
       </section>
-      {/* Footer Section */}
-      <footer className="footer py-4 bg-dark text-white">
-  <div className="container text-center">
-    <p>If you'd like to get in touch, feel free to reach out via email or connect with me on LinkedIn:</p>
-    <ul className="list-unstyled">
-      <li>Email: <a href="mailto:pavankumarpk8002@gmail.com" className="text-success">pavankumarpk8002@gmail.com</a></li>
-      <li>LinkedIn: <a href="http://linkedin.com/in/pavan-kumar-n-086677235" target="_blank" rel="noopener noreferrer" className="text-success">pavan-kumar</a></li>
-      <li>Instagram: 
-        <a href="https://www.instagram.com/pavan._.nagaraj_22?igsh=MXQwd3RobnRxN21pMg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="text-success">
-          <i className="fab fa-instagram"></i> {/* Instagram icon */}
-        </a>
-      </li>
-    </ul>
+  
+      {/* FOOTER */}
+      <footer className="footer slytherin-footer">
+  <div className="footer-mist"></div>
+
+  <div className="container">
+    <div className="row align-items-center">
+
+      {/* LEFT – CONTACT DETAILS */}
+      <div className="col-md-4 footer-contact">
+        <h4 className="footer-title">Contact</h4>
+
+        <p>
+          📧{" "}
+          <a href="mailto:pavankumarpk8002@gmail.com">
+            pavankumarpk8002@gmail.com
+          </a>
+        </p>
+
+        <p>
+          📱{" "}
+          <a href="tel:+919876543210">
+            +91 9739565251
+          </a>
+        </p>
+
+        <div className="footer-socials">
+          <a
+            href="https://wa.me/919739565251"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="WhatsApp"
+          >
+            <i className="fab fa-whatsapp"></i>
+          </a>
+
+          <a
+            href="https://instagram.com/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Instagram"
+          >
+            <i className="fab fa-instagram"></i>
+          </a>
+
+          <a
+            href="https://linkedin.com/in/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+          >
+            <i className="fab fa-linkedin"></i>
+          </a>
+        </div>
+      </div>
+
+      {/* CENTER – BRAND */}
+      <div className="col-md-4 footer-brand">
+        <h3 className="slytherin-text">Pavan Kumar</h3>
+        <p className="footer-tagline">
+          “Build In Weekend Scale To Millions”
+        </p>
+        <p className="footer-copy">
+          © {new Date().getFullYear()}
+        </p>
+      </div>
+
+      {/* RIGHT – QR CODE */}
+      <div className="col-md-4 footer-qr">
+        <h4 className="footer-title">Scan Me</h4>
+        <div className="qr-box">
+          {/* Replace src with your real QR */}
+          <img src="/Pictures/phone-dial-qr.png" alt="QR Code" />
+        </div>
+      </div>
+
+    </div>
   </div>
 </footer>
 
     </div>
   );
-}
+            }  
 
 export default Portfolio;
