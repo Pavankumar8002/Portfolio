@@ -18,14 +18,14 @@ function Header() {
           </span>
         </div>
         <ul>
-          <li>
+          {/* <li>
             <NavLink 
               to="/" 
               className={({ isActive }) => isActive ? 'active-link' : ''}
             >
               Home
             </NavLink>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </header>
