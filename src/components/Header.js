@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import '../styles/common.css';  
 // changes
 function Header() {
@@ -13,14 +12,6 @@ function Header() {
           </span>
         </div>
         <ul>
-          {/* <li>
-            <NavLink 
-              to="/" 
-              className={({ isActive }) => isActive ? 'active-link' : ''}
-            >
-              Home
-            </NavLink>
-          </li> */}
         </ul>
       </nav>
     </header>
