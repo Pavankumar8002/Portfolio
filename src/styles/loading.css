@@ -1,66 +1,194 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
 
+/* =========================================================
+   SERPENT LAIR — REALISTIC SNAKE ENVIRONMENT
+========================================================= */
+
 .loading-container {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(20, 60, 45, 0.18),
+      rgba(5, 12, 9, 0.98) 70%
+    );
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999; /* Ensures it's on top of other content */
+  z-index: 9999;
+  overflow: hidden;
 }
+
+/* =========================================================
+   REALISTIC SCALE FIELD (OVERLAPPING)
+========================================================= */
+
+.loading-container::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(120,207,160,0.08) 0 40%, transparent 42%),
+    radial-gradient(ellipse at 70% 40%, rgba(90,170,135,0.08) 0 40%, transparent 42%),
+    radial-gradient(ellipse at 50% 70%, rgba(60,140,110,0.08) 0 40%, transparent 42%);
+  background-size: 48px 42px;
+  filter: contrast(1.2);
+  animation: scale-crawl 18s linear infinite;
+  opacity: 0.7;
+}
+
+/* =========================================================
+   LOADING TEXT — SNAKE BODY
+========================================================= */
 
 .loading-text {
+  position: relative;
   font-family: 'Dancing Script', cursive;
-  font-size: 3rem; 
-  font-weight: 700; 
-  letter-spacing: 1px; 
+  font-size: clamp(2.6rem, 5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: 1.4px;
   text-align: center;
-  animation: fadeInSlideUp 2s ease-in-out, scaleUp 1.5s ease-out infinite alternate;
+
+  color: #e8fff5;
+
+  animation:
+    fadeInRise 1.6s ease-out forwards,
+    serpent-breathe 3.2s ease-in-out infinite;
+
+  text-shadow:
+    0 0 16px rgba(120, 207, 160, 0.45),
+    0 0 42px rgba(30, 90, 70, 0.35);
 }
 
-.first-name {
-  color: #fff; /* White color for 'Pavan' */
-  animation: colorChange 2s infinite alternate;
+/* =========================================================
+   REALISTIC SNAKE SKIN SHIMMER (TEXT)
+========================================================= */
+
+.loading-text .first-name,
+.loading-text .last-name {
+  display: inline-block;
+  background-image:
+    linear-gradient(
+      120deg,
+      rgba(255,255,255,0.12),
+      rgba(255,255,255,0),
+      rgba(255,255,255,0.12)
+    );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: skin-sheen 4.5s ease-in-out infinite;
 }
 
-.last-name {
-  color: #808080; /* Grey color for 'Kumar' */
-  animation: colorChange 3s infinite alternate;
+.loading-text .last-name {
+  color: #78cfa0;
+  margin-left: 8px;
 }
 
-@keyframes fadeInSlideUp {
-  0% {
+/* =========================================================
+   REALISTIC SNAKE EYE (IRIS + PUPIL)
+========================================================= */
+
+.loading-text::after {
+  content: "";
+  position: absolute;
+  top: -22px;
+  right: -26px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+
+  background:
+    radial-gradient(circle at 45% 45%, #c8ffe6 0%, #7cffc5 35%, #1f6b4b 60%, #06140f 100%);
+
+  box-shadow:
+    0 0 14px rgba(120, 207, 160, 0.8),
+    0 0 30px rgba(80, 160, 120, 0.4);
+
+  animation: eye-blink 6.5s ease-in-out infinite;
+}
+
+/* Vertical pupil */
+.loading-text::before {
+  content: "";
+  position: absolute;
+  top: -18px;
+  right: -20px;
+  width: 4px;
+  height: 10px;
+  background: #020705;
+  border-radius: 50%;
+  z-index: 2;
+  animation: pupil-focus 6.5s ease-in-out infinite;
+}
+
+/* =========================================================
+   ANIMATIONS — BIOLOGICAL MOTION
+========================================================= */
+
+@keyframes fadeInRise {
+  from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(28px);
   }
-  100% {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-@keyframes scaleUp {
+/* Slow breathing — predator calm */
+@keyframes serpent-breathe {
   0% {
     transform: scale(1);
   }
+  50% {
+    transform: scale(1.04);
+  }
   100% {
-    transform: scale(1.1);
+    transform: scale(1);
   }
 }
 
-@keyframes colorChange {
-  0% {
-    color: #fff;
+/* Scale movement illusion */
+@keyframes scale-crawl {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-160px, -220px);
+  }
+}
+
+/* Skin reflection sweep */
+@keyframes skin-sheen {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 200% 50%;
+  }
+}
+
+/* Eye blink */
+@keyframes eye-blink {
+  0%, 92%, 100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  94%, 96% {
+    transform: scaleY(0.12);
+    opacity: 0.4;
+  }
+}
+
+/* Subtle pupil contraction */
+@keyframes pupil-focus {
+  0%, 100% {
+    height: 10px;
   }
   50% {
-    color: #e0e0e0; /* Lighter white-grey */
-  }
-  100% {
-    color: #fff;
+    height: 7px;
   }
 }
-
