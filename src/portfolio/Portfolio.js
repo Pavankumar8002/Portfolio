@@ -107,8 +107,7 @@ function Portfolio() {
                 lineHeight: "1.8",
               }}
             >
-              Full Stack Developer focused on building scalable and clean web
-              applications using React, .NET, and PostgreSQL.
+I am a Full Stack Developer specializing in building scalable, clean, and maintainable web applications using React, .NET Core, Python, Java, JavaScript, and PHP. I have strong experience designing microservices-based architectures and working with Kafka for event-driven systems, along with hands-on expertise in Linux environments and a passion for crafting efficient, robust solutions for modern web development.
             </p>
 
           </div>
@@ -148,6 +147,75 @@ function Portfolio() {
                 </div>
               </section>
         </div>
+        {/* EXPERIENCE CAROUSEL */}
+<section className="py-5 slytherin-carousel">
+  <div className="container">
+    <h2 className="text-center mb-4 section-title">Experience</h2>
+
+    <div
+      id="experienceCarousel"
+      className="carousel slide"
+      data-bs-ride="carousel"
+    >
+      <div className="carousel-inner">
+
+        {[
+          {
+            title: "Associate Software Engineer",
+            company: "Idea Infinity IT Solution Pvt Ltd",
+            duration: "Jul 2024 - Present",
+            desc: "Building responsive React applications with modern UI/UX.",
+          },
+          {
+            title: "Full Stack Intern",
+            company: "ProGlobal Software Pvt Ltd",
+            duration: "Aug 2023 - Dec 2023",
+            desc: "Developed full stack web apps using .NET, React, and PostgreSQL.",
+          },
+        ].map((exp, i) => (
+          <div
+            key={i}
+            className={`carousel-item ${i === 0 ? "active" : ""}`}
+          >
+            <div className="d-flex flex-column justify-content-center align-items-center py-4">
+              <h5 style={{ color: "#9af0c9" }}>{exp.title}</h5>
+              <h6 style={{   color: "#8b4513", 
+  fontFamily: "'Ayuthaya', serif" }}>{exp.company}</h6>
+              <p className="text-light">{exp.duration}</p>
+              <p
+                className="text-center"
+                style={{ maxWidth: "600px", color: "#dce4e1" }}
+              >
+                {exp.desc}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Carousel controls */}
+      <button
+        className="carousel-control-prev"
+        type="button"
+        data-bs-target="#experienceCarousel"
+        data-bs-slide="prev"
+      >
+        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span className="visually-hidden">Previous</span>
+      </button>
+      <button
+        className="carousel-control-next"
+        type="button"
+        data-bs-target="#experienceCarousel"
+        data-bs-slide="next"
+      >
+        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+        <span className="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</section>
+
      {/* PROJECTS */}
       <section className="py-5">
         <div className="slytherin-projects">
@@ -157,13 +225,19 @@ function Portfolio() {
             <div className="row g-4">
               {[
                 {
-                  title: "Portfolio Website",
-                  desc: "Modern React portfolio with dark UI",
-                  link: "https://github.com/Pavankumar8002/Portfolio",
+                  title: "Smart Metering Solution (CESCOM)",
+                  desc: "Worked on the development and implementation of a Smart Metering Solution for Chamundeshwari Electricity Supply Corporation (CESCOM), part of a government initiative to modernize electricity distribution through Advanced Metering Infrastructure (AMI). The project involved creating web interfaces and backend components for real-time data collection, monitoring, and management of smart electricity meters, enabling automated meter reading, accurate billing, and improved energy analytics.",
+                  // link: ""
+                },
+
+                {
+                  title: "WebScraper",
+                  desc: "A craping web application which will scrape the links in a website based on URL using BS4 (Beautiful Soup) Python.",
+                  link: "https://github.com/Pavankumar8002/WebScraper",
                 },
                 {
                   title: "VoiceBot",
-                  desc: "Python AI voice assistant",
+                  desc: "Python AI voice assistant performs basic activities with NLP processing and voice input output usage of Google Text to speech is also made. ",
                   link: "https://github.com/Pavankumar8002/VoiceBot",
                 },
               ].map((p, i) => (

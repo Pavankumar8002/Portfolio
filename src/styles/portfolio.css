@@ -560,3 +560,47 @@ section {
     padding: 20px;
   }
 }
+/*  */
+.slytherin-carousel {
+  background: radial-gradient(circle at top, rgba(120,207,160,0.08), #08130e 65%);
+  padding: 80px 0;
+  color: #dce4e1;
+}
+
+.slytherin-carousel .carousel-item {
+  background: linear-gradient(
+    145deg,
+    rgba(12, 26, 20, 0.95),
+    rgba(18, 38, 30, 0.97)
+  );
+  border: 1px solid rgba(120, 207, 160, 0.18);
+  border-radius: 18px;
+  padding: 40px 20px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.55);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.slytherin-carousel .carousel-item h5 {
+  font-weight: 600;
+  text-shadow: 0 0 6px rgba(120,207,160,0.6);
+}
+
+.slytherin-carousel .carousel-item p {
+  font-family: 'Ayuthaya', serif;
+  line-height: 1.6;
+}
+
+/* Carousel controls glow */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(120,207,160,0.7);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+  background-color: rgba(120,207,160,0.9);
+  box-shadow: 0 0 8px rgba(120,207,160,0.6);
+}
