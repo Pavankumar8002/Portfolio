@@ -31,9 +31,28 @@ function Portfolio() {
   const API_BASE_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
-    const timer = setTimeout(() => setPageLoading(false), 1200);
+    let specialDays = {};
+  
+    try {
+      specialDays = process.env.REACT_APP_SPECIAL_DAYS_JSON
+        ? JSON.parse(process.env.REACT_APP_SPECIAL_DAYS_JSON)
+        : {};
+    } catch (e) {
+      console.error("Invalid SPECIAL_DAYS JSON", e);
+    }
+  
+    const today = new Date().toISOString().split("T")[0];
+    const isSpecialDay = Object.values(specialDays).includes(today);
+  
+    const delay = isSpecialDay ? 3500 : 1200;
+  
+    const timer = setTimeout(() => {
+      setPageLoading(false);
+    }, delay);
+  
     return () => clearTimeout(timer);
   }, []);
+  
 
   if (pageLoading) return <Loading />;
 

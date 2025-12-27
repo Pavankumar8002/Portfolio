@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
 
 /* =========================================================
-   SERPENT LAIR — REALISTIC SNAKE ENVIRONMENT
+   SERPENT LAIR — BASE ENVIRONMENT
 ========================================================= */
 
 .loading-container {
@@ -21,7 +21,7 @@
 }
 
 /* =========================================================
-   REALISTIC SCALE FIELD (OVERLAPPING)
+   SNAKE SCALE FIELD
 ========================================================= */
 
 .loading-container::before {
@@ -39,34 +39,64 @@
 }
 
 /* =========================================================
-   LOADING TEXT — SNAKE BODY
+   LOADING TEXT — SERPENT BODY
 ========================================================= */
 
 .loading-text {
   position: relative;
   font-family: 'Dancing Script', cursive;
-  font-size: clamp(2.6rem, 5vw, 3.5rem);
+  font-size: clamp(2.6rem, 5vw, 3.6rem);
   font-weight: 700;
   letter-spacing: 1.4px;
   text-align: center;
-
   color: #e8fff5;
 
   animation:
     fadeInRise 1.6s ease-out forwards,
-    serpent-breathe 3.2s ease-in-out infinite;
+    serpent-breathe 3.2s ease-in-out infinite,
+    serpent-sway 6s ease-in-out infinite;
 
   text-shadow:
-    0 0 16px rgba(120, 207, 160, 0.45),
-    0 0 42px rgba(30, 90, 70, 0.35);
+    0 0 16px rgba(120,207,160,0.45),
+    0 0 42px rgba(30,90,70,0.35);
 }
 
+
 /* =========================================================
-   REALISTIC SNAKE SKIN SHIMMER (TEXT)
+   SNAKE EYE (REALISTIC)
 ========================================================= */
 
-.loading-text .first-name,
-.loading-text .last-name {
+.loading-text::after {
+  content: "";
+  position: absolute;
+  top: -22px;
+  right: -28px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 45% 45%, #c8ffe6 0%, #7cffc5 35%, #1f6b4b 60%, #06140f 100%);
+  box-shadow:
+    0 0 14px rgba(120,207,160,0.8),
+    0 0 30px rgba(80,160,120,0.4);
+  animation: eye-blink 6.5s ease-in-out infinite;
+}
+
+/* Vertical pupil */
+.loading-text::before {
+  content: "";
+  position: absolute;
+  top: -18px;
+  right: -22px;
+  width: 4px;
+  height: 10px;
+  background: #020705;
+  border-radius: 50%;
+  z-index: 2;
+  animation: pupil-focus 6.5s ease-in-out infinite;
+}
+
+.loading-text span {
   display: inline-block;
   background-image:
     linear-gradient(
@@ -76,119 +106,173 @@
       rgba(255,255,255,0.12)
     );
   background-size: 200% 100%;
-  -webkit-background-clip: text;
   background-clip: text;
-  animation: skin-sheen 4.5s ease-in-out infinite;
+  -webkit-background-clip: text;
+
+  animation:
+    skin-sheen 4.5s ease-in-out infinite,
+    letter-drift 3.6s ease-in-out infinite;
+}
+/* Side-to-side snake motion */
+@keyframes serpent-sway {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(-6px) rotate(-0.4deg); }
+  50%  { transform: translateX(0); }
+  75%  { transform: translateX(6px) rotate(0.4deg); }
+  100% { transform: translateX(0); }
 }
 
-.loading-text .last-name {
-  color: #78cfa0;
-  margin-left: 8px;
+/* Individual letter breathing */
+@keyframes letter-drift {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
 }
+
 
 /* =========================================================
-   REALISTIC SNAKE EYE (IRIS + PUPIL)
+   SPECIAL DAY MODE — SLYTHERIN CELEBRATION
 ========================================================= */
 
-.loading-text::after {
-  content: "";
-  position: absolute;
-  top: -22px;
-  right: -26px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-
+.loading-container.special-day {
   background:
-    radial-gradient(circle at 45% 45%, #c8ffe6 0%, #7cffc5 35%, #1f6b4b 60%, #06140f 100%);
-
-  box-shadow:
-    0 0 14px rgba(120, 207, 160, 0.8),
-    0 0 30px rgba(80, 160, 120, 0.4);
-
-  animation: eye-blink 6.5s ease-in-out infinite;
-}
-
-/* Vertical pupil */
-.loading-text::before {
-  content: "";
-  position: absolute;
-  top: -18px;
-  right: -20px;
-  width: 4px;
-  height: 10px;
-  background: #020705;
-  border-radius: 50%;
-  z-index: 2;
-  animation: pupil-focus 6.5s ease-in-out infinite;
+    radial-gradient(circle at center,
+      rgba(60,160,120,0.45),
+      rgba(10,25,18,0.98) 70%);
+  animation: aurora-pulse 8s ease-in-out infinite;
 }
 
 /* =========================================================
-   ANIMATIONS — BIOLOGICAL MOTION
+   MULTI-LAYER STAR FIELD (DEPTH)
 ========================================================= */
 
-@keyframes fadeInRise {
-  from {
-    opacity: 0;
-    transform: translateY(28px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+.loading-container.special-day::after,
+.loading-container.special-day::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.loading-container.special-day::after {
+  background:
+    radial-gradient(1px 1px at 10% 20%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 80% 30%, #d9fff0, transparent),
+    radial-gradient(1px 1px at 40% 60%, #fff, transparent),
+    radial-gradient(2px 2px at 70% 80%, #b8ffe2, transparent);
+  background-size: 320px 320px;
+  animation: star-drift-slow 60s linear infinite;
+}
+
+.loading-container.special-day::before {
+  background:
+    radial-gradient(1px 1px at 30% 40%, #ffffffaa, transparent),
+    radial-gradient(1.2px 1.2px at 60% 70%, #e6fff5, transparent);
+  background-size: 200px 200px;
+  animation: star-drift-fast 35s linear infinite;
+}
+
+/* =========================================================
+   GLITTER DUST (EMERALD SPARKS)
+========================================================= */
+
+.loading-container.special-day .glitter {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(circle, rgba(120,207,160,.9) 0 2px, transparent 3px),
+    radial-gradient(circle, rgba(255,255,255,.9) 0 1.5px, transparent 3px);
+  background-size: 100px 100px;
+  animation: glitter-rise 16s linear infinite;
+  opacity: .7;
+  pointer-events: none;
+}
+
+/* =========================================================
+   FIREWORK BURSTS (MULTI POINT)
+========================================================= */
+
+.loading-container.special-day .firework {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: firework 3s ease-out infinite;
+}
+
+.loading-container.special-day .firework:nth-child(1) {
+  top: 20%;
+  left: 25%;
+}
+
+.loading-container.special-day .firework:nth-child(2) {
+  top: 60%;
+  left: 70%;
+  animation-delay: 1.2s;
+}
+
+.loading-container.special-day .firework:nth-child(3) {
+  top: 35%;
+  left: 55%;
+  animation-delay: 2.1s;
+}
+
+/* =========================================================
+   CELEBRATION TEXT — POWERED SERPENT
+========================================================= */
+
+.loading-container.special-day .loading-text {
+  animation:
+    fadeInRise 1.4s ease-out forwards,
+    serpent-breathe 3s ease-in-out infinite,
+    celebration-pulse 1.6s ease-in-out infinite;
+
+  text-shadow:
+    0 0 28px rgba(140,255,200,.9),
+    0 0 60px rgba(60,180,130,.7),
+    0 0 110px rgba(30,120,90,.45);
+}
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes aurora-pulse {
+  50% {
+    filter: brightness(1.15) saturate(1.2);
   }
 }
 
-/* Slow breathing — predator calm */
-@keyframes serpent-breathe {
+@keyframes star-drift-slow {
+  to { transform: translateY(-300px); }
+}
+
+@keyframes star-drift-fast {
+  to { transform: translateY(-180px); }
+}
+
+@keyframes glitter-rise {
+  to { transform: translateY(-260px); }
+}
+
+@keyframes firework {
   0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.04);
+    box-shadow:
+      0 0 0 0 rgba(120,207,160,.95),
+      0 0 0 0 rgba(255,255,255,.9);
+    opacity: 1;
   }
   100% {
-    transform: scale(1);
+    box-shadow:
+      0 0 0 90px rgba(120,207,160,0),
+      0 0 0 140px rgba(255,255,255,0);
+    opacity: 0;
   }
 }
 
-/* Scale movement illusion */
-@keyframes scale-crawl {
-  from {
-    transform: translate(0, 0);
-  }
-  to {
-    transform: translate(-160px, -220px);
-  }
-}
-
-/* Skin reflection sweep */
-@keyframes skin-sheen {
-  from {
-    background-position: 0% 50%;
-  }
-  to {
-    background-position: 200% 50%;
-  }
-}
-
-/* Eye blink */
-@keyframes eye-blink {
-  0%, 92%, 100% {
-    transform: scaleY(1);
-    opacity: 1;
-  }
-  94%, 96% {
-    transform: scaleY(0.12);
-    opacity: 0.4;
-  }
-}
-
-/* Subtle pupil contraction */
-@keyframes pupil-focus {
-  0%, 100% {
-    height: 10px;
-  }
+@keyframes celebration-pulse {
   50% {
-    height: 7px;
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 34px rgba(200,255,230,.95));
   }
 }
