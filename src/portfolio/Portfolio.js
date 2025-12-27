@@ -83,52 +83,39 @@ function Portfolio() {
   return (
     <>
 
-      {/* HERO */}
-      <section className="bg-dark text-light py-5 text-center">
-        <div className="container">
-          {/* <h1 className="fw-bold">Pavan Kumar</h1> */}
-           <h5   style={{
-    color: "#dce4e1", 
-    fontFamily: "'Ayuthaya', serif", 
-    lineHeight: "1.8",
-  }}>Full Stack Developer • React • .NET • PostgreSQL </h5> 
+      {/* ABOUT */}
+    <section className="py-5 about-me">
+      <div className="container">
+        <div className="row align-items-center g-4">
+          
+          {/* PROFILE IMAGE */}
+          <div className="col-md-5 text-center">
+            <img
+              src="/Pictures/profilepic.jpg"
+              alt="Profile"
+              className="about-image img-fluid shadow"
+            />
+          </div>
+
+          {/* ABOUT TEXT */}
+          <div className="col-md-7">
+            <h2 className="section-title">About Me</h2>
+            <p
+              style={{
+                color: "#dce4e1", 
+                fontFamily: "'Ayuthaya', serif", 
+                lineHeight: "1.8",
+              }}
+            >
+              Full Stack Developer focused on building scalable and clean web
+              applications using React, .NET, and PostgreSQL.
+            </p>
+
+          </div>
 
         </div>
-      </section>
-
-      {/* ABOUT */}
-<section className="py-5 about-me">
-  <div className="container">
-    <div className="row align-items-center g-4">
-      
-      {/* PROFILE IMAGE */}
-      <div className="col-md-5 text-center">
-        <img
-          src="/Pictures/profilepic.jpg"
-          alt="Profile"
-          className="about-image img-fluid shadow"
-        />
       </div>
-
-      {/* ABOUT TEXT */}
-      <div className="col-md-7">
-        <h2 className="section-title">About Me</h2>
-        <p
-  style={{
-    color: "#dce4e1", 
-    fontFamily: "'Ayuthaya', serif", 
-    lineHeight: "1.8",
-  }}
->
-  Full Stack Developer focused on building scalable and clean web
-  applications using React, .NET, and PostgreSQL.
-</p>
-
-      </div>
-
-    </div>
-  </div>
-</section>
+    </section>
 
 
       {/* MARQUEE */}
@@ -156,169 +143,163 @@ function Portfolio() {
                   {skill}
                 </div>
               </div>
-            ))}
+               ))}
+                  </div>
+                </div>
+              </section>
+        </div>
+     {/* PROJECTS */}
+      <section className="py-5">
+        <div className="slytherin-projects">
+          <div className="container">
+            <h2 className="text-center mb-4 section-title">Projects</h2>
+
+            <div className="row g-4">
+              {[
+                {
+                  title: "Portfolio Website",
+                  desc: "Modern React portfolio with dark UI",
+                  link: "https://github.com/Pavankumar8002/Portfolio",
+                },
+                {
+                  title: "VoiceBot",
+                  desc: "Python AI voice assistant",
+                  link: "https://github.com/Pavankumar8002/VoiceBot",
+                },
+              ].map((p, i) => (
+                <div className="col-md-6" key={i}>
+                  <div className="card h-100 shadow-sm">
+                    <div className="card-body">
+                      <h5 className="card-title">{p.title}</h5>
+                      <p className="card-text text-muted">{p.desc}</p>
+                      <a href={p.link} target="_blank" rel="noreferrer">
+                        View on GitHub →
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
-</div>
-     {/* PROJECTS */}
-<section className="py-5">
-  <div className="slytherin-projects">
-    <div className="container">
-      <h2 className="text-center mb-4 section-title">Projects</h2>
 
-      <div className="row g-4">
-        {[
-          {
-            title: "Portfolio Website",
-            desc: "Modern React portfolio with dark UI",
-            link: "https://github.com/Pavankumar8002/Portfolio",
-          },
-          {
-            title: "VoiceBot",
-            desc: "Python AI voice assistant",
-            link: "https://github.com/Pavankumar8002/VoiceBot",
-          },
-        ].map((p, i) => (
-          <div className="col-md-6" key={i}>
-            <div className="card h-100 shadow-sm">
-              <div className="card-body">
-                <h5 className="card-title">{p.title}</h5>
-                <p className="card-text text-muted">{p.desc}</p>
-                <a href={p.link} target="_blank" rel="noreferrer">
-                  View on GitHub →
+
+      {/* FOOTER WITH CONTACT FORM */}
+      <footer className="slytherin-footer">
+        <div className="container">
+          <div className="row g-5 align-items-start">
+
+            {/* LEFT — SOCIAL ICONS + QR */}
+            <div className="col-md-6 text-center text-md-start">
+              <h4 className="footer-title mb-3">Connect With Me</h4>
+
+              {/* Social / Email Logos */}
+              <div className="footer-socials mb-4">
+                <a
+                  href="mailto:pavankumarpk8002@gmail.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Email"
+                >
+                  <i className="fas fa-envelope"></i>
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/in/pavan-kumar-n-086677235?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="LinkedIn"
+                >
+                  <i className="fab fa-linkedin"></i>
+                </a>
+
+                <a
+                  href="https://github.com/Pavankumar8002"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="GitHub"
+                >
+                  <i className="fab fa-github"></i>
+                </a>
+
+                <a
+                  href="https://www.instagram.com/pavan._.nagaraj_22?igsh=MXQwd3RobnRxN21pMg%3D%3D&utm_source=qr"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Instagram"
+                >
+                  <i className="fab fa-instagram"></i>
                 </a>
               </div>
+
+              {/* QR Code */}
+              <div className="qr-box">
+                <img src="/Pictures/qr.png" alt="QR Code" />
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
 
+            {/* RIGHT — CONTACT FORM */}
+            <div className="col-md-6">
+        <form
+          onSubmit={handleSubmit}
+          className={`card p-4 shadow contact ${
+            isSubmitting ? "summoning" : ""
+          }`}
+        >
+          <h5 className="mb-4 text-center section-title">
+            Send a Message
+          </h5>
 
-{/* FOOTER WITH CONTACT FORM */}
-<footer className="slytherin-footer">
-  <div className="container">
-    <div className="row g-5 align-items-start">
+          <input
+            type="text"
+            className="form-control mb-3"
+            placeholder="Your Name"
+            value={name}
+            disabled={isSubmitting}
+            onChange={(e) =>
+              setName(e.target.value.replace(/[^A-Za-z\s]/g, ""))
+            }
+          />
 
-      {/* LEFT — SOCIAL ICONS + QR */}
-      <div className="col-md-6 text-center text-md-start">
-        <h4 className="footer-title mb-3">Connect With Me</h4>
+          <input
+            type="email"
+            className="form-control mb-3"
+            placeholder="Your Email"
+            value={email}
+            disabled={isSubmitting}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-        {/* Social / Email Logos */}
-        <div className="footer-socials mb-4">
-          <a
-            href="mailto:pavankumarpk8002@gmail.com"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Email"
-          >
-            <i className="fas fa-envelope"></i>
-          </a>
+          <textarea
+            className="form-control mb-3"
+            rows="4"
+            placeholder="Your Message"
+            value={message}
+            disabled={isSubmitting}
+            onChange={(e) => setMessage(e.target.value)}
+          />
 
-          <a
-            href="https://www.linkedin.com/in/pavan-kumar-n-086677235?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="LinkedIn"
-          >
-            <i className="fab fa-linkedin"></i>
-          </a>
-
-          <a
-            href="https://github.com/Pavankumar8002"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="GitHub"
-          >
-            <i className="fab fa-github"></i>
-          </a>
-
-          <a
-            href="https://www.instagram.com/pavan._.nagaraj_22?igsh=MXQwd3RobnRxN21pMg%3D%3D&utm_source=qr"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Instagram"
-          >
-            <i className="fab fa-instagram"></i>
-          </a>
-        </div>
-
-        {/* QR Code */}
-        <div className="qr-box">
-          <img src="/Pictures/qr.png" alt="QR Code" />
-        </div>
-      </div>
-
-      {/* RIGHT — CONTACT FORM */}
-      <div className="col-md-6">
-  <form
-    onSubmit={handleSubmit}
-    className={`card p-4 shadow contact ${
-      isSubmitting ? "summoning" : ""
-    }`}
-  >
-    <h5 className="mb-4 text-center section-title">
-      Send a Message
-    </h5>
-
-    <input
-      type="text"
-      className="form-control mb-3"
-      placeholder="Your Name"
-      value={name}
-      disabled={isSubmitting}
-      onChange={(e) =>
-        setName(e.target.value.replace(/[^A-Za-z\s]/g, ""))
-      }
-    />
-
-    <input
-      type="email"
-      className="form-control mb-3"
-      placeholder="Your Email"
-      value={email}
-      disabled={isSubmitting}
-      onChange={(e) => setEmail(e.target.value)}
-    />
-
-    <textarea
-      className="form-control mb-3"
-      rows="4"
-      placeholder="Your Message"
-      value={message}
-      disabled={isSubmitting}
-      onChange={(e) => setMessage(e.target.value)}
-    />
-
-<button
-  type="submit"
-  className="btn btn-slytherin w-100 summon-btn"
-  disabled={isSubmitting}
->
-  <span
-    style={{
-      color: isSubmitting ? "#0c1a14" : "#e6fff3",
-      fontFamily: "'Ayuthaya', serif", 
-      textShadow: isSubmitting
-        ? "none"
-        : "0 0 6px rgba(120,207,160,0.6)"
-    }}
-  >
-    {isSubmitting ? "🐍 Summoning..." : "Send Message"}
-  </span>
-</button>
-
-
-  </form>
-
+      <button
+        type="submit"
+        className="btn btn-slytherin w-100 summon-btn"
+        disabled={isSubmitting}
+      >
+        <span
+          style={{
+            color: isSubmitting ? "#0c1a14" : "#e6fff3",
+            fontFamily: "'Ayuthaya', serif", 
+            textShadow: isSubmitting
+              ? "none"
+              : "0 0 6px rgba(120,207,160,0.6)"
+          }}
+        >
+          {isSubmitting ? "🐍 Summoning..." : "Send Message"}
+        </span>
+      </button>
+    </form>
 </div>
-
-
     </div>
-
     {/* Footer Bottom */}
     <div className="text-center mt-5 pt-4 border-top border-secondary">
       <small>© {new Date().getFullYear()} Pavan Kumar</small>
