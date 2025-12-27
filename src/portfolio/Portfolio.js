@@ -254,23 +254,33 @@ function Portfolio() {
 
       {/* RIGHT — CONTACT FORM */}
       <div className="col-md-6">
-  <form onSubmit={handleSubmit} className="card p-4 shadow contact">
-    <h5 className="mb-4 text-center section-title">Send a Message</h5>
+  <form
+    onSubmit={handleSubmit}
+    className={`card p-4 shadow contact ${
+      isSubmitting ? "summoning" : ""
+    }`}
+  >
+    <h5 className="mb-4 text-center section-title">
+      Send a Message
+    </h5>
 
     <input
+      type="text"
       className="form-control mb-3"
       placeholder="Your Name"
       value={name}
+      disabled={isSubmitting}
       onChange={(e) =>
         setName(e.target.value.replace(/[^A-Za-z\s]/g, ""))
       }
     />
 
     <input
-      className="form-control mb-3"
       type="email"
+      className="form-control mb-3"
       placeholder="Your Email"
       value={email}
+      disabled={isSubmitting}
       onChange={(e) => setEmail(e.target.value)}
     />
 
@@ -279,17 +289,31 @@ function Portfolio() {
       rows="4"
       placeholder="Your Message"
       value={message}
+      disabled={isSubmitting}
       onChange={(e) => setMessage(e.target.value)}
     />
 
-    <button
-      type="submit"
-      className="btn btn-slytherin w-100"
-      disabled={isSubmitting}
-    >
-      {isSubmitting ? "Sending..." : "Send Message"}
-    </button>
+<button
+  type="submit"
+  className="btn btn-slytherin w-100 summon-btn"
+  disabled={isSubmitting}
+>
+  <span
+    style={{
+      color: isSubmitting ? "#0c1a14" : "#e6fff3",
+      fontFamily: "'Ayuthaya', serif", 
+      textShadow: isSubmitting
+        ? "none"
+        : "0 0 6px rgba(120,207,160,0.6)"
+    }}
+  >
+    {isSubmitting ? "🐍 Summoning..." : "Send Message"}
+  </span>
+</button>
+
+
   </form>
+
 </div>
 
 

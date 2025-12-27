@@ -292,6 +292,9 @@ section {
 /* =========================================================
    CONTACT FORM — SLYTHERIN DARK FOREST
 ========================================================= */
+/* =========================================================
+   SLYTHERIN SNAKE SCALE SUMMONING BUTTON
+========================================================= */
 .contact {
   background: linear-gradient(
     145deg,
@@ -330,45 +333,110 @@ section {
   outline: none;
 }
 
-/* Button — Slytherin wand style */
-.btn-slytherin {
-  background: linear-gradient(135deg, #4caf78, #78cfa0);
-  color: #0c1a14;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  transition: all 0.35s ease;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(76, 175, 120, 0.3);
+.summon-btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-color: #78cfa0;
+  box-shadow: 0 0 10px 2px rgba(120, 207, 160, 0.3);
 }
 
-.btn-slytherin:hover {
-  background: linear-gradient(135deg, #78cfa0, #9af0c9);
-  color: #0c1a14;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(76, 175, 120, 0.45);
+/* SCALE TEXTURE */
+.summon-btn::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(120, 207, 160, 0.35) 0 35%, transparent 36%),
+    radial-gradient(circle at 60% 40%, rgba(90, 170, 130, 0.35) 0 35%, transparent 36%),
+    radial-gradient(circle at 40% 70%, rgba(60, 140, 110, 0.35) 0 35%, transparent 36%);
+  background-size: 38px 38px;
+  opacity: 0;
+  transform: translateY(100%);
+  z-index: 0;
 }
 
-/* Section Title Styling for Form Header */
-.contact .section-title {
-  color: #78cfa0;
-  text-shadow: 0 0 12px rgba(120, 207, 160, 0.25);
-  font-weight: 600;
-  letter-spacing: 1.5px;
+/* SCALE SHINE */
+.summon-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(180, 255, 220, 0.35),
+    transparent 80%
+  );
+  opacity: 0;
+  z-index: 1;
 }
 
-/* Mobile Adjustments */
-@media (max-width: 576px) {
-  .contact input,
-  .contact textarea {
-    padding: 8px 12px;
-    font-size: 0.95rem;
+/* TEXT ABOVE */
+.summon-btn span,
+.summon-btn {
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================================================
+   ACTIVE SUMMONING (BUTTON DISABLED)
+========================================================= */
+
+.summon-btn:disabled {
+  cursor: wait;
+  background: linear-gradient(135deg, #1f4d36, #3b8f68);
+  box-shadow:
+    0 0 30px rgba(120, 207, 160, 0.6),
+    inset 0 0 18px rgba(0, 0, 0, 0.6);
+  animation: snake-breath 1.1s ease-in-out infinite;
+}
+
+/* Spawn scales upward */
+.summon-btn:disabled::before {
+  opacity: 0.9;
+  animation: scale-spawn 1.6s linear infinite;
+}
+
+/* Scale shimmer */
+.summon-btn:disabled::after {
+  opacity: 0.6;
+  animation: scale-shine 1.2s linear infinite;
+}
+
+/* =========================================================
+   ANIMATIONS — ORGANIC & ALIVE
+========================================================= */
+
+@keyframes scale-spawn {
+  from {
+    transform: translateY(100%);
   }
-
-  .btn-slytherin {
-    font-size: 0.95rem;
-    padding: 8px 0;
+  to {
+    transform: translateY(-100%);
   }
 }
+
+@keyframes scale-shine {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes snake-breath {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 
 
 /* =========================================================
@@ -428,7 +496,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: rotate(45deg); /* diamond shape */
+  transform: rotate(90deg); /* diamond shape */
   background: linear-gradient(145deg, rgba(12,26,20,0.95), rgba(18,38,30,0.98));
   border: 2px solid rgba(120, 207, 160, 0.4);
   border-radius: 12px;
@@ -440,7 +508,7 @@ section {
 .qr-box img {
   width: 80%;
   height: 80%;
-  transform: rotate(-45deg); /* rotate image back to normal */
+  transform: rotate(-90deg); /* rotate image back to normal */
   border-radius: 6px;
 }
 

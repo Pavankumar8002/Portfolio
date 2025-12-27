@@ -3,21 +3,16 @@ import "../styles/Marquee.css";
 
 const Marquee = ({ images = [] }) => {
   return (
-    <div className="marquee-container overflow-hidden">
-      <div className="container-fluid">
-        <div
-          className="marquee d-flex align-items-center"
-          aria-label="Technology stack marquee"
-        >
+    <div className="marquee-container" aria-label="Technology stack marquee">
+      {/* Remove container-fluid padding */}
+      <div className="marquee-wrapper">
+        <div className="marquee">
           {images.map((image, index) => (
-            <div
-              className="marquee-item flex-shrink-0 text-center"
-              key={index}
-            >
+            <div className="marquee-item" key={index}>
               <img
                 src={image}
                 alt={`Technology logo ${index + 1}`}
-                className="marquee-image img-fluid"
+                className="marquee-image"
                 loading="lazy"
                 draggable="false"
               />
