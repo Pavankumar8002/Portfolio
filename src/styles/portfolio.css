@@ -2,40 +2,45 @@
    0. FONT IMPORTS
 ========================================================= */
 @import url('https://fonts.googleapis.com/css2?family=Ayuthaya&family=Montserrat:wght@500;600&family=Roboto:wght@400;500&display=swap');
+/* =========================================================
+   GLOBAL CURSOR — SLYTHERIN WAND EMOJI
+========================================================= */
+body, * {
+  cursor: url('/public/Pictures/wand.png') 0 32, auto;
+}
+
+a:hover, button:hover, .btn {
+  cursor: url('/public/Pictures/wand.png') 0 32, pointer;
+}
+
+
 
 /* =========================================================
    1. ROOT VARIABLES — RUSTIC FOREST TECH THEME
 ========================================================= */
 :root {
-  --bg-main: #08130e;        /* deep forest night */
-  --bg-section: #0f2319;    /* dark leaf */
-  --bg-card: #142f23;       /* moss */
-  --bg-card-soft: #1b3f30;
+  --bg-main: #08130e;
+  --bg-section: #0f2319;
+  --bg-card: #142f23;
 
-  --accent-main: #4caf78;   /* emerald */
+  --accent-main: #4caf78;
   --accent-soft: #78cfa0;
-  --accent-glow: rgba(76, 175, 120, 0.35);
+  --accent-glow: rgba(76,175,120,.35);
 
   --text-main: #e6f3ec;
   --text-muted: #a7c7b7;
   --text-dark: #0c1a14;
 
-  --border-soft: rgba(120, 207, 160, 0.18);
+  --border-soft: rgba(120,207,160,.18);
 
-  --shadow-soft: 0 10px 25px rgba(0,0,0,0.45);
-  --shadow-strong: 0 22px 55px rgba(0,0,0,0.65);
+  --shadow-soft: 0 10px 25px rgba(0,0,0,.45);
+  --shadow-strong: 0 22px 55px rgba(0,0,0,.65);
 }
 
 /* =========================================================
-   2. GLOBAL RESET & BACKGROUND
+   2. GLOBAL RESET (BOOTSTRAP SAFE)
 ========================================================= */
-* {
-  box-sizing: border-box;
-}
-
 html, body {
-  margin: 0;
-  padding: 0;
   min-height: 100%;
   background: linear-gradient(180deg, #050c09, var(--bg-main));
   color: var(--text-main);
@@ -43,24 +48,27 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Subtle tech + organic light texture */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(circle at 15% 20%, rgba(120,207,160,0.05), transparent 40%),
-    radial-gradient(circle at 85% 80%, rgba(76,175,120,0.04), transparent 45%);
+    radial-gradient(circle at 15% 20%, rgba(120,207,160,.05), transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(76,175,120,.04), transparent 45%);
   pointer-events: none;
   z-index: 0;
 }
 
 /* =========================================================
-   3. TYPOGRAPHY
+   3. TYPOGRAPHY (RESPONSIVE)
 ========================================================= */
 h1, h2, h3, h4 {
   font-family: 'Montserrat', sans-serif;
   letter-spacing: 1px;
+}
+
+h2 {
+  font-size: clamp(1.9rem, 4vw, 3rem);
 }
 
 p {
@@ -70,575 +78,417 @@ p {
 }
 
 /* =========================================================
-   4. ANIMATIONS
-========================================================= */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-section,
-.card,
-.skill-card,
-.project-card {
-  animation: fadeUp 0.9s ease both;
-}
-
-/* =========================================================
-   5. SECTION BASE
+   4. SECTION — SLYTHERIN DARK FOREST
 ========================================================= */
 section {
   position: relative;
-  padding: 90px 0;
+  padding: clamp(60px, 8vw, 100px) 0;
   z-index: 1;
+  background: radial-gradient(
+    circle at top,
+    rgba(120, 207, 160, 0.06),
+    rgba(8, 19, 14, 0.96) 60%
+  );
 }
 
+/* =========================================================
+   5. SECTION TITLE — SLYTHERIN SIGNATURE
+========================================================= */
 .section-title {
-  font-size: 3rem;
+  color: var(--accent-soft);
   text-align: center;
-  color: var(--accent-main);
-  margin-bottom: 60px;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
+  margin-bottom: clamp(40px, 6vw, 70px);
+  font-weight: 600;
   position: relative;
+  text-shadow: 0 0 12px rgba(120, 207, 160, 0.25);
 }
 
 .section-title::after {
   content: "";
+  display: block;
   width: 90px;
-  height: 3px;
+  height: 2px;
+  margin: 14px auto 0;
   background: linear-gradient(
     90deg,
     transparent,
-    var(--accent-main),
+    rgba(120, 207, 160, 0.8),
     transparent
   );
-  display: block;
-  margin: 16px auto 0;
+  opacity: 0.7;
+}
+
+@media (max-width: 576px) {
+  .section-title {
+    letter-spacing: 2px;
+    font-size: 1.4rem;
+  }
 }
 
 /* =========================================================
-   6. ABOUT SECTION
+   ABOUT SECTION — IMAGE + TEXT
 ========================================================= */
 .about-me {
   background: linear-gradient(180deg, #07130d, var(--bg-section));
-}
-
-.about-container {
-  display: flex;
-  gap: 50px;
-  align-items: center;
+  padding: clamp(60px, 8vw, 100px) 0;
 }
 
 .about-image {
-  max-width: 50%;
-  border-radius: 22px;
-  box-shadow: var(--shadow-strong);
-  filter: brightness(90%) saturate(90%);
-  transition: all 0.5s ease;
+  width: 100%;
+  max-width: 400px; /* limits large images */
+  border-radius: 20px;
 }
 
-.about-image:hover {
-  transform: scale(1.04);
-  filter: brightness(100%) saturate(110%);
-}
-
-.about-text-container {
-  max-width: 50%;
-}
-
-.about-text-container h2 {
-  font-size: 3.1rem;
-  color: var(--accent-main);
-  margin-bottom: 20px;
-}
-
-/* =========================================================
-   7. BUTTONS
-========================================================= */
-.btn-link,
-.btn-success {
-  background: linear-gradient(135deg, var(--accent-main), #2e8b5f);
-  color: var(--text-dark);
-  border-radius: 50px;
-  padding: 14px 36px;
+/* Text styling */
+.about-me h2 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: var(--accent-soft);
   font-weight: 600;
-  letter-spacing: 1.3px;
-  border: none;
-  box-shadow: var(--shadow-soft);
-  transition: all 0.35s ease;
-  position: relative;
+  text-shadow: 0 0 12px rgba(172, 181, 176, 0.25);
+  margin-bottom: 1rem;
 }
 
-.btn-link:hover,
-.btn-success:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 30px var(--accent-glow);
+.about-me p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.8;
 }
+
+/* MOBILE ADJUSTMENTS */
+@media (max-width: 768px) {
+  .about-image {
+    max-width: 300px;
+  }
+
+  .about-me h2 {
+    font-size: 1.6rem;
+  }
+
+  .about-me p {
+    font-size: 0.95rem;
+  }
+}
+
 
 /* =========================================================
-   8. SKILLS SECTION
+   7. SKILLS — DARK FOREST / SLYTHERIN THEME
 ========================================================= */
-.skills {
-  background: linear-gradient(180deg, #0c1d15, #10251b);
+.skill-card {
+  background: linear-gradient(
+    145deg,
+    rgba(15, 32, 24, 0.98),
+    rgba(20, 47, 35, 0.95)
+  );
+  border: 1px solid rgba(120, 207, 160, 0.18);
+  border-radius: 18px;
+  padding: 26px 18px;
+  text-align: center;
+  color: #cfeede;
+  font-size: 0.95rem;
+  letter-spacing: 0.4px;
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.45),
+    inset 0 0 0 rgba(120, 207, 160, 0);
+  transition: 
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease,
+    color 0.35s ease;
 }
 
-.skill-card {
-  background: rgba(20, 47, 35, 0.9);
-  border: 1px solid var(--border-soft);
-  border-radius: 18px;
-  padding: 30px 20px;
-  text-align: center;
-  font-size: 1.15rem;
-  color: var(--text-main);
-  box-shadow: var(--shadow-soft);
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
+.skill-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  color: #9af0c9;
+  border-color: rgba(120, 207, 160, 0.45);
+  box-shadow:
+    0 18px 40px rgba(120, 207, 160, 0.35),
+    inset 0 0 12px rgba(120, 207, 160, 0.12);
 }
 
 .skill-card::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    120deg,
-    transparent,
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at top,
     rgba(120, 207, 160, 0.15),
-    transparent
+    transparent 60%
   );
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
 }
 
 .skill-card:hover::after {
   opacity: 1;
 }
 
-.skill-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  color: var(--accent-soft);
-  box-shadow: 0 20px 45px rgba(111, 207, 151, 0.35);
+@media (max-width: 576px) {
+  .skill-card {
+    padding: 22px 14px;
+    font-size: 0.9rem;
+  }
 }
 
 /* =========================================================
-   9. PROJECTS SECTION
+   8. PROJECTS — BOOTSTRAP + SLYTHERIN WRAPPER
 ========================================================= */
-.projects {
-  background: linear-gradient(180deg, #0f2319, #08130e);
+.slytherin-projects {
+  background: radial-gradient(
+    circle at top,
+    rgba(120, 207, 160, 0.08),
+    rgba(8, 19, 14, 0.96) 65%
+  );
+  padding: 80px 0;
 }
 
-.project-card {
-  background: #e6f2ea;
-  color: #1b3a2a;
-  border-radius: 22px;
-  padding: 36px;
-  height: 100%;
-  box-shadow: var(--shadow-strong);
-  transition: all 0.4s ease;
+.slytherin-projects .card {
+  background: linear-gradient(
+    145deg,
+    rgba(12, 26, 20, 0.98),
+    rgba(18, 38, 30, 0.95)
+  );
+  border: 1px solid rgba(120, 207, 160, 0.18);
+  border-radius: 18px;
+  color: #d7efe4;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.slytherin-projects .card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(120, 207, 160, 0.45);
+  box-shadow: 0 18px 40px rgba(120, 207, 160, 0.35);
+}
+
+.slytherin-projects .card-title {
+  color: #9af0c9;
+  font-weight: 600;
+}
+
+.slytherin-projects .card-text {
+  color: #b9ddd0 !important;
+}
+
+.slytherin-projects a {
+  color: #78cfa0;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.slytherin-projects a:hover {
+  color: #b8ffe1;
+  text-shadow: 0 0 8px rgba(120, 207, 160, 0.4);
+}
+
+/* =========================================================
+   9. CONTACT FORM — SLYTHERIN
+========================================================= */
+/* =========================================================
+   CONTACT FORM — SLYTHERIN DARK FOREST
+========================================================= */
+.contact {
+  background: linear-gradient(
+    145deg,
+    rgba(12, 26, 20, 0.98),
+    rgba(18, 38, 30, 0.95)
+  );
+  border: 1px solid rgba(120, 207, 160, 0.18);
+  border-radius: 18px;
+  color: #e6f3ec;
+  transition: all 0.35s ease;
   position: relative;
 }
 
-.project-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 22px;
-  background: linear-gradient(
-    135deg,
-    transparent,
-    rgba(76, 175, 120, 0.18)
-  );
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.project-card:hover::before {
-  opacity: 1;
-}
-
-.project-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 28px 65px rgba(111, 207, 151, 0.45);
-}
-
-.project-card h4 {
-  font-size: 1.6rem;
-  margin-bottom: 14px;
-}
-
-.project-card p {
-  color: #345f4a;
-}
-
-/* =========================================================
-   10. EXPERIENCE / ACHIEVEMENTS
-========================================================= */
-.experience-item {
-  background: var(--bg-card);
-  border-radius: 18px;
-  padding: 28px;
-  box-shadow: var(--shadow-soft);
-  transition: all 0.4s ease;
-}
-
-.experience-item:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-strong);
-}
-
-.achievements {
-  background: var(--bg-main);
-}
-
-.achievements li {
-  color: var(--text-muted);
-}
-
-/* =========================================================
-   11. CONTACT
-========================================================= */
+/* Input / Textarea */
 .contact input,
 .contact textarea {
   background: #0f2319;
   border: 1px solid #274d3a;
-  color: var(--text-main);
-}
-
-.contact input:focus,
-.contact textarea:focus {
-  outline: none;
-  border-color: var(--accent-main);
-  box-shadow: 0 0 0 2px rgba(76,175,120,0.25);
-}
-
-/* =========================================================
-   12. FOOTER
-========================================================= */
-.footer {
-  background: #050c09;
-  padding: 50px 20px;
-  text-align: center;
-  box-shadow: inset 0 10px 40px rgba(0,0,0,0.7);
-}
-
-.footer a {
-  color: var(--accent-main);
-  text-decoration: none;
-}
-
-.footer a:hover {
-  color: var(--accent-soft);
-}
-
-/* =========================================================
-   13. RESPONSIVE
-========================================================= */
-/* =========================================================
-   SLYTHERIN FOOTER
-========================================================= */
-
-.slytherin-footer {
-  position: relative;
-  background: radial-gradient(
-    circle at top,
-    #0f2a1e,
-    #050c09 70%
-  );
   color: #e6f3ec;
-  padding: 80px 20px;
-  overflow: hidden;
-  box-shadow: inset 0 10px 50px rgba(0,0,0,0.8);
-}
-
-/* Floating magical mist */
-.footer-mist {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(76,175,120,0.15), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(120,207,160,0.12), transparent 45%);
-  animation: mistMove 18s linear infinite;
-  pointer-events: none;
-  z-index: 0;
-}
-
-@keyframes mistMove {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-30px); }
-  100% { transform: translateY(0); }
-}
-
-.slytherin-footer .container {
-  position: relative;
-  z-index: 1;
-}
-
-/* TITLES */
-.footer-title {
-  color: #78cfa0;
-  font-family: 'Montserrat', sans-serif;
-  letter-spacing: 1px;
-  margin-bottom: 15px;
-}
-
-/* CONTACT */
-.footer-contact a {
-  color: #e6f3ec;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer-contact a:hover {
-  color: #78cfa0;
-}
-
-/* SOCIAL ICONS */
-.footer-socials {
-  margin-top: 20px;
-}
-
-.footer-socials a {
-  font-size: 1.6rem;
-  margin-right: 18px;
-  color: #78cfa0;
+  border-radius: 12px;
+  padding: 10px 14px;
   transition: all 0.35s ease;
 }
 
-.footer-socials a:hover {
-  color: #e6f3ec;
-  text-shadow: 0 0 15px rgba(120,207,160,0.8);
-  transform: translateY(-4px);
-}
-
-/* BRAND CENTER */
-.footer-brand {
-  text-align: center;
-}
-
-.slytherin-text {
-  font-size: 2.2rem;
-  font-family: 'Montserrat', sans-serif;
-  color: #78cfa0;
-  text-shadow: 0 0 12px rgba(120,207,160,0.6);
-}
-
-.footer-tagline {
+.contact input::placeholder,
+.contact textarea::placeholder {
+  color: #9fbdb0; /* light complementary */
   font-style: italic;
-  color: #a7c7b7;
-  margin-top: 8px;
 }
 
-.footer-copy {
-  margin-top: 15px;
-  font-size: 0.95rem;
-  color: #7fae96;
+/* Focus — wand magical glow */
+.contact input:focus,
+.contact textarea:focus {
+  border-color: #78cfa0;
+  box-shadow: 0 0 10px 2px rgba(120, 207, 160, 0.3);
+  outline: none;
 }
 
-/* QR CODE */
-.footer-qr {
-  text-align: center;
-}
-
-.qr-box {
-  margin-top: 15px;
-  padding: 12px;
-  display: inline-block;
-  background: rgba(15,42,30,0.85);
+/* Button — Slytherin wand style */
+.btn-slytherin {
+  background: linear-gradient(135deg, #4caf78, #78cfa0);
+  color: #0c1a14;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.35s ease;
   border-radius: 12px;
-  box-shadow: 0 0 25px rgba(76,175,120,0.4);
+  box-shadow: 0 6px 20px rgba(76, 175, 120, 0.3);
 }
 
-.qr-box img {
-  width: 120px;
-  height: 120px;
-  object-fit: contain;
+.btn-slytherin:hover {
+  background: linear-gradient(135deg, #78cfa0, #9af0c9);
+  color: #0c1a14;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(76, 175, 120, 0.45);
 }
 
-/* =========================================================
-   RESPONSIVE FOOTER FIX
-========================================================= */
-@media (max-width: 768px) {
-  .slytherin-footer .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 25px; /* spacing between sections */
+/* Section Title Styling for Form Header */
+.contact .section-title {
+  color: #78cfa0;
+  text-shadow: 0 0 12px rgba(120, 207, 160, 0.25);
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 576px) {
+  .contact input,
+  .contact textarea {
+    padding: 8px 12px;
+    font-size: 0.95rem;
   }
 
-  .footer-contact,
-  .footer-brand,
-  .footer-qr {
-    text-align: center;
-    width: 100%;
-    margin-bottom: 0; /* gap handles spacing */
-  }
-
-  .footer-socials {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap; /* wrap icons to next line if needed */
-    gap: 15px;
-    margin-top: 10px;
-  }
-
-  .footer-socials a {
-    font-size: 1.5rem;
-    margin: 0; /* remove original margin to avoid overlap */
-  }
-
-  .qr-box img {
-    width: 100px;
-    height: 100px;
+  .btn-slytherin {
+    font-size: 0.95rem;
+    padding: 8px 0;
   }
 }
 
 
 /* =========================================================
-   WAND LIGHT STREAK EFFECT
+   10. FOOTER — BOOTSTRAP SAFE SLYTHERIN
 ========================================================= */
+.slytherin-footer {
+  background: radial-gradient(circle at top, #3e4844, #050c09 70%);
+  padding: clamp(60px, 6vw, 90px) 0;
+  color: #e6f3ec;
+}
 
-.footer-contact a,
+.footer-title {
+  color: #78cfa0;
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* =========================================================
+   FOOTER SOCIALS — SLYTHERIN WAND STYLE
+========================================================= */
 .footer-socials a {
+  font-size: 2rem;
+  margin-right: 20px;
+  color: #78cfa0;
   position: relative;
-  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
-/* Wand streak */
-.footer-contact a::after,
+/* Wand-like hover glow animation */
 .footer-socials a::after {
   content: "";
   position: absolute;
-  top: 50%;
-  left: -120%;
-  width: 120%;
-  height: 2px;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(120, 207, 160, 0.9),
-    rgba(200, 255, 230, 0.95),
-    rgba(120, 207, 160, 0.9),
-    transparent
-  );
-
-  transform: translateY(-50%);
-  filter: blur(0.5px);
-  opacity: 0;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 rgba(120, 207, 160, 0);
+  transition: box-shadow 0.35s ease;
 }
 
-/* Hover animation trigger */
-.footer-contact a:hover::after,
-.footer-socials a:hover::after {
-  animation: wandStreak 0.8s ease-out forwards;
-  opacity: 1;
-}
-
-/* Spell animation */
-@keyframes wandStreak {
-  0% {
-    left: -120%;
-    opacity: 0;
-  }
-  30% {
-    opacity: 1;
-  }
-  100% {
-    left: 120%;
-    opacity: 0;
-  }
-}
-
-/* Extra glow on hover */
-.footer-contact a:hover,
 .footer-socials a:hover {
-  text-shadow:
-    0 0 6px rgba(120, 207, 160, 0.6),
-    0 0 12px rgba(120, 207, 160, 0.4);
-}
-/* ===============================
-   SLYTHERIN BUTTON & LOADER
-================================ */
-
-.slytherin-btn {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(135deg, #0f2a1e, #1c5d3a);
-  border: none;
-  font-weight: 600;
-  letter-spacing: 1px;
+  color: #b8ffe1;
+  transform: translateY(-4px);
+  text-shadow: 0 0 8px rgba(120, 207, 160, 0.5);
 }
 
-/* Loader container */
-.slytherin-loader {
+.footer-socials a:hover::after {
+  box-shadow: 0 0 15px 4px rgba(120, 207, 160, 0.35);
+}
+
+/* =========================================================
+   QR CODE — SLYTHERIN DIAMOND WRAPPER
+========================================================= */
+.qr-box {
+  width: clamp(120px, 14vw, 160px);
+  height: clamp(120px, 14vw, 160px);
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  transform: rotate(45deg); /* diamond shape */
+  background: linear-gradient(145deg, rgba(12,26,20,0.95), rgba(18,38,30,0.98));
+  border: 2px solid rgba(120, 207, 160, 0.4);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(120,207,160,0.3);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Snake parts */
-.slytherin-loader span {
-  display: inline-block;
+.qr-box img {
+  width: 80%;
+  height: 80%;
+  transform: rotate(-45deg); /* rotate image back to normal */
+  border-radius: 6px;
 }
 
-.snake-head,
-.snake-body,
-.snake-tail {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #78cfa0;
-  box-shadow: 0 0 10px rgba(120, 207, 160, 0.9);
-  animation: slither 1.4s infinite ease-in-out;
+/* Hover effect for QR */
+.qr-box:hover {
+  transform: rotate(45deg) scale(1.05);
+  box-shadow: 0 12px 28px rgba(120,207,160,0.5);
 }
 
-/* Delay for slithering effect */
-.snake-body {
-  animation-delay: 0.15s;
-}
-.snake-tail {
-  animation-delay: 0.3s;
-}
-
-/* Slither animation */
-@keyframes slither {
-  0% {
-    transform: translateX(-15px);
-    opacity: 0.3;
+/* MOBILE ADJUSTMENTS */
+@media (max-width: 576px) {
+  .footer-socials a {
+    font-size: 1.7rem;
+    margin-right: 14px;
   }
-  50% {
-    transform: translateX(0);
-    opacity: 1;
+
+  .qr-box {
+    width: 100px;
+    height: 100px;
+    margin-top: 16px;
   }
-  100% {
-    transform: translateX(15px);
-    opacity: 0.3;
+
+  .qr-box img {
+    width: 80%;
+    height: 80%;
   }
 }
 
-/* Loader text */
-.loader-text {
-  font-size: 0.95rem;
-  color: #e6f3ec;
-  font-style: italic;
-  text-shadow: 0 0 8px rgba(120, 207, 160, 0.6);
+
+/* =========================================================
+   11. MOBILE / RESPONSIVE FIXES
+========================================================= */
+@media (max-width: 768px) {
+  section {
+    padding: clamp(40px, 6vw, 80px) 0;
+  }
 }
 
+@media (max-width: 480px) {
+  .skill-card {
+    padding: 18px 12px;
+  }
 
-@keyframes whisper {
-  0% { letter-spacing: 1px; }
-  50% { letter-spacing: 2px; }
-  100% { letter-spacing: 1px; }
-}
+  .slytherin-projects {
+    padding: 60px 0;
+  }
 
-.swal2-html-container em {
-  animation: whisper 2.5s ease-in-out infinite;
+  .contact {
+    padding: 20px;
+  }
 }

@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Header from "../components/Header";
 import Marquee from "../components/Marquee";
 import Loading from "../components/Loading";
-import "../styles/portfolio.css";
 import axios from "axios";
 import Swal from "sweetalert2";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const images = [
   "/Pictures/java.png",
@@ -22,53 +21,34 @@ const images = [
 ];
 
 function Portfolio() {
-  // Page loading (initial)
   const [pageLoading, setPageLoading] = useState(true);
-
-  // Form loading
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Form fields
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const [formStatus, setFormStatus] = useState("");
-
   const API_BASE_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setPageLoading(false);
-    }, 1500);
+    const timer = setTimeout(() => setPageLoading(false), 1200);
     return () => clearTimeout(timer);
   }, []);
 
-  if (pageLoading) {
-    return <Loading />;
-  }
+  if (pageLoading) return <Loading />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormStatus("");
-  
+
     if (!name || !email || !message) {
-      Swal.fire({
-        icon: "warning",
-        text: "All fields are required!",
-        background: "radial-gradient(circle at top, #0f2a1e, #050c09)",
-        color: "#e6f3ec",
-        confirmButtonText: "Understood",
-        confirmButtonColor: "#1c5d3a",
-        iconColor: "#78cfa0",
-      });
+      Swal.fire("All fields are required");
       return;
     }
-  
+
     setIsSubmitting(true);
-  
+
     try {
-      const response = await axios.post(
+      const res = await axios.post(
         `${API_BASE_URL}/PortfolioEnquery/PostPortfolioEnquiry`,
         {
           name: name.substring(0, 36),
@@ -76,331 +56,254 @@ function Portfolio() {
           message: message.substring(0, 1000),
         }
       );
-  
-      // 🐍 STOP LOADER BEFORE ALERT
+
       setIsSubmitting(false);
-  
-      if (response.data?.status === 1) {
+
+      if (res.data?.status === 1) {
         await Swal.fire({
-          title: "Sssent… 🐍",
-          html: `
-            <div style="
-              font-family: 'Montserrat', sans-serif;
-              letter-spacing: 1px;
-              line-height: 1.8;
-            ">
-              <p style="font-size: 1.1rem; color:#78cfa0;">
-                <em>Ssshaaa… your message hasss been heard.</em>
-              </p>
-              <p style="color:#a7c7b7; margin-top:12px;">
-                The Slytherin wards now guard your words.<br/>
-                I shall respond ssssoon…
-              </p>
-            </div>
-          `,
-          background: "radial-gradient(circle at top, #0f2a1e, #050c09)",
-          color: "#e6f3ec",
           icon: "success",
-          iconColor: "#78cfa0",
-          confirmButtonText: "Sssilence the wards",
-          confirmButtonColor: "#1c5d3a",
-          allowOutsideClick: false,
-          showClass: {
-            popup: "animate__animated animate__fadeInDown"
-          },
-          hideClass: {
-            popup: "animate__animated animate__fadeOutUp"
-          }
+          title: "Message Sent 🐍",
+          background: "#0b1c14",
+          color: "#e6f3ec",
+          confirmButtonColor: "#198754",
         });
-        
-  
+
         setName("");
         setEmail("");
         setMessage("");
       } else {
-        Swal.fire({
-          icon: "error",
-          text: response.data?.message || "Submission failed.",
-          background: "radial-gradient(circle at top, #0f2a1e, #050c09)",
-          color: "#e6f3ec",
-          confirmButtonColor: "#1c5d3a",
-          iconColor: "#78cfa0",
-        });
+        Swal.fire("Submission failed");
       }
-    } catch (error) {
-      console.error(error);
+    } catch {
       setIsSubmitting(false);
-  
-      Swal.fire({
-        icon: "error",
-        text: "Server error. Please try again later.",
-        background: "radial-gradient(circle at top, #0f2a1e, #050c09)",
-        color: "#e6f3ec",
-        confirmButtonColor: "#1c5d3a",
-        iconColor: "#78cfa0",
-      });
+      Swal.fire("Server error");
     }
   };
-  
-  
+
   return (
-    <div className="portfolio">
-  
-      <Header />
-  
-      {/* HERO SECTION */}
-      <section className="hero-section d-flex align-items-center">
-        <div className="container text-center">
-          <br></br>
-          <p className="hero-subtitle">
-            Full Stack Developer • React • .NET • PostgreSQL
-          </p>
-        </div>
-      </section>
-  
-      {/* ABOUT */}
-      <section className="about-me py-5">
+    <>
+
+      {/* HERO */}
+      <section className="bg-dark text-light py-5 text-center">
         <div className="container">
-          <div className="row align-items-center">
-            <div className="col-md-5 mb-4">
-              <img
-                src="/Pictures/picture.jpeg"
-                alt="Profile"
-                className="about-image"
-              />
-            </div>
-            <div className="col-md-7">
-              <h2>About Me</h2>
-              <p>
-                I’m a <strong>Full Stack Developer</strong> passionate about building
-                scalable, clean, and high-performance web applications.
-                I specialize in <strong>React, .NET, PostgreSQL</strong> and love
-                solving real-world problems with code.
-              </p>
-            </div>
-          </div>
+          {/* <h1 className="fw-bold">Pavan Kumar</h1> */}
+           <h5   style={{
+    color: "#dce4e1", 
+    fontFamily: "'Ayuthaya', serif", 
+    lineHeight: "1.8",
+  }}>Full Stack Developer • React • .NET • PostgreSQL </h5> 
+
         </div>
       </section>
-  
-      {/* TECH MARQUEE */}
-      <section className="py-4">
+
+      {/* ABOUT */}
+<section className="py-5 about-me">
+  <div className="container">
+    <div className="row align-items-center g-4">
+      
+      {/* PROFILE IMAGE */}
+      <div className="col-md-5 text-center">
+        <img
+          src="/Pictures/picture.jpeg"
+          alt="Profile"
+          className="about-image img-fluid shadow"
+        />
+      </div>
+
+      {/* ABOUT TEXT */}
+      <div className="col-md-7">
+        <h2 className="section-title">About Me</h2>
+        <p
+  style={{
+    color: "#dce4e1", 
+    fontFamily: "'Ayuthaya', serif", 
+    lineHeight: "1.8",
+  }}
+>
+  Full Stack Developer focused on building scalable and clean web
+  applications using React, .NET, and PostgreSQL.
+</p>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+      {/* MARQUEE */}
+      <section className="py-3 bg-light">
         <Marquee images={images} />
       </section>
-  
-{/* SKILLS */}
-<section className="skills-section">
-  <div className="container">
-    <h2 className="section-title text-center">Skills & Tools</h2>
-
-    <div className="row justify-content-center">
-      {[
-        "React.js",
-        "JavaScript",
-        ".NET (C#)",
-        "PostgreSQL",
-        "HTML & CSS",
-        "Git & GitHub",
-        "Java",
-        "Python",
-      ].map((skill, i) => (
-        <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={i}>
-          <div className="skill-card">
-            <span>{skill}</span>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-{/* PROJECTS */}
-<section className="projects-section">
-  <div className="container">
-    <h2 className="section-title text-center">Projects</h2>
-
-    <div className="row justify-content-center">
-      {[
-        {
-          title: "Portfolio Website",
-          desc: "Modern React-based personal portfolio with dark UI.",
-          link: "https://github.com/Pavankumar8002/Portfolio",
-        },
-        {
-          title: "VoiceBot",
-          desc: "Python-based AI voice assistant with voice commands.",
-          link: "https://github.com/Pavankumar8002/VoiceBot",
-        },
-      ].map((p, i) => (
-        <div className="col-lg-5 col-md-6 mb-4" key={i}>
-          <div className="project-card">
-            <h4>{p.title}</h4>
-            <p>{p.desc}</p>
-
-            <a
-              href={p.link}
-              target="_blank"
-              rel="noreferrer"
-              className="project-link"
-            >
-              View on GitHub →
-            </a>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-  
-      {/* CONTACT */}
-      <section id="contact" className="contact py-5">
+      <div className="border rounded text-center py-3 fw-semibold skill-card">
+      {/* SKILLS */}
+      <section className="py-5">
         <div className="container">
-          <h2 className="text-center mb-4">Get In Touch</h2>
-  
-          <div className="contact-card glass">
-            <form onSubmit={handleSubmit}>
-              <input
-                className="form-control mb-3"
-                placeholder="Your Name"
-                value={name}
-                onChange={(e) =>
-                  setName(e.target.value.replace(/[^A-Za-z\s]/g, ""))
-                }
-                required
-              />
-  
-              <input
-                className="form-control mb-3"
-                type="email"
-                placeholder="Your Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-  
-              <textarea
-                className="form-control mb-3"
-                rows="4"
-                placeholder="Your Message"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                required
-              />
-  
-              {/* <button
-                className="btn btn-success w-100"
-                type="submit"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? "Sending..." : "Send Message"}
-              </button> */}
-              <button
-  className="btn btn-success w-100 slytherin-btn"
-  type="submit"
-  disabled={isSubmitting}
->
-  {isSubmitting ? (
-    <span className="slytherin-loader">
-      <span className="snake-head"></span>
-      <span className="snake-body"></span>
-      <span className="snake-tail"></span>
-      <span className="loader-text">Summoning...</span>
-    </span>
-  ) : (
-    "Send Message"
-  )}
-</button>
-
-            </form>
-  
-            {formStatus && (
-              <p className="text-center mt-3">{formStatus}</p>
-            )}
+          <h2 className="text-center mb-4">Skills & Tools</h2>
+          <div className="row g-3">
+            {[
+              "React.js",
+              "JavaScript",
+              ".NET (C#)",
+              "PostgreSQL",
+              "HTML & CSS",
+              "Git & GitHub",
+              "Java",
+              "Python",
+            ].map((skill, i) => (
+              <div className="col-6 col-md-4 col-lg-3" key={i}>
+                <div className="border rounded text-center py-3 fw-semibold">
+                  {skill}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
-  
-      {/* FOOTER */}
-      <footer className="footer slytherin-footer">
-  <div className="footer-mist"></div>
+</div>
+     {/* PROJECTS */}
+<section className="py-5">
+  <div className="slytherin-projects">
+    <div className="container">
+      <h2 className="text-center mb-4 section-title">Projects</h2>
 
+      <div className="row g-4">
+        {[
+          {
+            title: "Portfolio Website",
+            desc: "Modern React portfolio with dark UI",
+            link: "https://github.com/Pavankumar8002/Portfolio",
+          },
+          {
+            title: "VoiceBot",
+            desc: "Python AI voice assistant",
+            link: "https://github.com/Pavankumar8002/VoiceBot",
+          },
+        ].map((p, i) => (
+          <div className="col-md-6" key={i}>
+            <div className="card h-100 shadow-sm">
+              <div className="card-body">
+                <h5 className="card-title">{p.title}</h5>
+                <p className="card-text text-muted">{p.desc}</p>
+                <a href={p.link} target="_blank" rel="noreferrer">
+                  View on GitHub →
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{/* FOOTER WITH CONTACT FORM */}
+<footer className="slytherin-footer">
   <div className="container">
-    <div className="row align-items-center">
+    <div className="row g-5 align-items-start">
 
-      {/* LEFT – CONTACT DETAILS */}
-      <div className="col-md-4 footer-contact">
-        <h4 className="footer-title">Contact</h4>
+      {/* LEFT — SOCIAL ICONS + QR */}
+      <div className="col-md-6 text-center text-md-start">
+        <h4 className="footer-title mb-3">Connect With Me</h4>
 
-        <p>
-          📧{" "}
-          <a href="mailto:pavankumarpk8002@gmail.com">
-            pavankumarpk8002@gmail.com
-          </a>
-        </p>
-
-        <p>
-          📱{" "}
-          <a href="tel:+919876543210">
-            +91 9739565251
-          </a>
-        </p>
-
-        <div className="footer-socials">
+        {/* Social / Email Logos */}
+        <div className="footer-socials mb-4">
           <a
-            href="https://wa.me/919739565251"
+            href="mailto:pavan@email.com"
             target="_blank"
             rel="noreferrer"
-            aria-label="WhatsApp"
+            aria-label="Email"
           >
-            <i className="fab fa-whatsapp"></i>
+            <i className="fas fa-envelope"></i>
           </a>
 
           <a
-            href="https://instagram.com/"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Instagram"
-          >
-            <i className="fab fa-instagram"></i>
-          </a>
-
-          <a
-            href="https://linkedin.com/in/"
+            href="https://linkedin.com/in/yourprofile"
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
           >
             <i className="fab fa-linkedin"></i>
           </a>
+
+          <a
+            href="https://github.com/yourprofile"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="GitHub"
+          >
+            <i className="fab fa-github"></i>
+          </a>
+
+          <a
+            href="https://instagram.com/yourprofile"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Instagram"
+          >
+            <i className="fab fa-instagram"></i>
+          </a>
         </div>
-      </div>
 
-      {/* CENTER – BRAND */}
-      <div className="col-md-4 footer-brand">
-        <h3 className="slytherin-text">Pavan Kumar</h3>
-        <p className="footer-tagline">
-          “Build In Weekend Scale To Millions”
-        </p>
-        <p className="footer-copy">
-          © {new Date().getFullYear()}
-        </p>
-      </div>
-
-      {/* RIGHT – QR CODE */}
-      <div className="col-md-4 footer-qr">
-        <h4 className="footer-title">Scan Me</h4>
+        {/* QR Code */}
         <div className="qr-box">
-          {/* Replace src with your real QR */}
-          <img src="/Pictures/phone-dial-qr.png" alt="QR Code" />
+          <img src="/Pictures/qr.png" alt="QR Code" />
         </div>
       </div>
 
+      {/* RIGHT — CONTACT FORM */}
+      <div className="col-md-6">
+  <form onSubmit={handleSubmit} className="card p-4 shadow contact">
+    <h5 className="mb-4 text-center section-title">Send a Message</h5>
+
+    <input
+      className="form-control mb-3"
+      placeholder="Your Name"
+      value={name}
+      onChange={(e) =>
+        setName(e.target.value.replace(/[^A-Za-z\s]/g, ""))
+      }
+    />
+
+    <input
+      className="form-control mb-3"
+      type="email"
+      placeholder="Your Email"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+    />
+
+    <textarea
+      className="form-control mb-3"
+      rows="4"
+      placeholder="Your Message"
+      value={message}
+      onChange={(e) => setMessage(e.target.value)}
+    />
+
+    <button
+      type="submit"
+      className="btn btn-slytherin w-100"
+      disabled={isSubmitting}
+    >
+      {isSubmitting ? "Sending..." : "Send Message"}
+    </button>
+  </form>
+</div>
+
+
+    </div>
+
+    {/* Footer Bottom */}
+    <div className="text-center mt-5 pt-4 border-top border-secondary">
+      <small>© {new Date().getFullYear()} Pavan Kumar</small>
     </div>
   </div>
 </footer>
 
-    </div>
+    </>
   );
-            }  
+}
 
 export default Portfolio;

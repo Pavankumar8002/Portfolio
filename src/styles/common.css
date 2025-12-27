@@ -1,174 +1,152 @@
-/* Import the Dancing Script font for "Pavan" and "Kumar" */
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+/* =========================================================
+   FONT – BRAND SIGNATURE
+========================================================= */
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap");
+
+/* =========================================================
+   GLOBAL RESET (BOOTSTRAP SAFE)
+========================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #0c1a14;
+  color: #e6f3ec;
 }
 
-h1 {
-    font-size: 2.5rem;
-    color: #333;
-}
-
-p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #555;
-}
-
-.main-container {
-    width: 80%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
+/* =========================================================
+   HEADER / NAVBAR
+========================================================= */
 header {
-    width: 100%;
-    background-color: transparent;
-    padding: 10px 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    box-shadow: none;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  background: rgba(5, 12, 9, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
+/* Bootstrap navbar override */
+.navbar {
+  padding: 12px 20px;
 }
 
-.nav-left {
-    font-family: 'Roboto', sans-serif;
-    color: #fff;
+/* Navbar toggler visibility (dark theme fix) */
+.navbar-toggler {
+  border-color: rgba(120, 207, 160, 0.5);
+}
+
+.navbar-toggler-icon {
+  filter: invert(1);
+}
+
+/* =========================================================
+   BRAND – PAVAN KUMAR
+========================================================= */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+}
+
+.first-name,
+.last-name {
+  font-family: "Dancing Script", cursive;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Pavan */
+.first-name {
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 2rem;
+}
+
+/* Kumar */
+.last-name {
+  color: #9aa5a0;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  font-size: 1.9rem;
+}
+
+/* Remove hover artifacts */
+.navbar-brand:hover {
+  text-decoration: none;
+}
+
+/* =========================================================
+   NAV LINKS
+========================================================= */
+.navbar-nav .nav-link {
+  color: #e6f3ec;
+  font-size: 1.05rem;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+/* Hover */
+.navbar-nav .nav-link:hover {
+  background: #4caf78;
+  color: #0c1a14;
+}
+
+/* Active */
+.navbar-nav .nav-link.active {
+  background: rgba(76, 175, 120, 0.25);
+  color: #78cfa0;
+  font-weight: 600;
+}
+
+/* =========================================================
+   MOBILE NAV FIX
+========================================================= */
+@media (max-width: 991px) {
+  .navbar-nav {
+    margin-top: 12px;
+    background: rgba(8, 19, 14, 0.97);
+    border-radius: 14px;
+    padding: 12px;
+  }
+
+  .navbar-nav .nav-link {
+    margin-bottom: 8px;
+  }
+
+  .first-name {
+    font-size: 1.7rem;
+  }
+
+  .last-name {
     font-size: 1.6rem;
-    font-weight: bold;
+  }
 }
 
-.site-name {
-    display: flex;
-    align-items: center;
-    font-size: 2rem;
+/* =========================================================
+   PAGE OFFSET FOR STICKY HEADER
+========================================================= */
+.page-content {
+  padding-top: 90px;
 }
 
-.first-name {
-    color: #fff;
-    font-family: 'Dancing Script', cursive;
-    font-weight: 700;
-    letter-spacing: 1px;
+@media (max-width: 576px) {
+  .page-content {
+    padding-top: 80px;
+  }
 }
-
-.last-name {
-    color: #808080;
-    font-family: 'Dancing Script', cursive;
-    font-weight: 400;
-    letter-spacing: 0.5px;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-}
-
-nav li {
-    margin: 0 15px;
-}
-
-nav a, nav .active-link {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.2rem;
-    padding: 8px 15px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-}
-
-/* For active state styling */
-nav .active-link {
-    background-color: #555;
-    color: #fff;
-    font-weight: bold;
-}
-
-/* Hover effects */
-nav a:hover, nav .active-link:hover {
-    background-color: #4CAF50;
-    text-decoration: none !important;
-}
-
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-    .main-container {
-        width: 95%;
-    }
-
-    .section {
-        padding: 30px 15px;
-    }
-
-    h1 {
-        font-size: 2rem;
-    }
-
-    p {
-        font-size: 1rem;
-    }
-
-    nav ul {
-        flex-direction: column;
-    }
-
-    nav li {
-        margin: 10px 0;
-    }
-
-    nav a {
-        font-size: 1.1rem;
-        padding: 10px 20px;
-    }
-}
-
-
-.first-name-link {
-    text-decoration: none; /* Remove underline */
-    color: inherit; /* Inherit text color */
-}
-
-/* Keep 'Pavan' size consistent without enlarging */
-.first-name {
-    font-size: 2rem; /* Keep the same size as before */
-    font-weight: bold; /* Keep 'Pavan' bold */
-    letter-spacing: 1px;
-}
-
-/* Keep 'Kumar' styling consistent */
-.last-name {
-    font-size: 2rem; /* Same font size as 'Pavan' */
-    font-weight: normal; /* Keep 'Kumar' normal weight */
-    letter-spacing: 0.5px;
-}
-
-/* Ensure no highlighting when clicking 'Pavan' */
-.first-name:hover {
-    background: none; /* Prevent hover effect from changing background */
-    cursor: pointer; /* Indicate clickable without highlight */
-}
-
-/* Remove underline and highlight from NavLink */
-nav a {
-    color: inherit; /* Keep links with the default color */
-    text-decoration: none; /* Remove underline from other links */
-}
-
