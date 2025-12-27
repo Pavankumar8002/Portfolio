@@ -104,7 +104,7 @@ function Portfolio() {
       {/* PROFILE IMAGE */}
       <div className="col-md-5 text-center">
         <img
-          src="/Pictures/profilepic.heic"
+          src="/Pictures/picture.jpeg"
           alt="Profile"
           className="about-image img-fluid shadow"
         />
