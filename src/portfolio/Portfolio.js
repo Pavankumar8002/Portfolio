@@ -210,7 +210,7 @@ function Portfolio() {
         {/* Social / Email Logos */}
         <div className="footer-socials mb-4">
           <a
-            href="mailto:pavan@email.com"
+            href="mailto:pavankumarpk8002@gmail.com"
             target="_blank"
             rel="noreferrer"
             aria-label="Email"
@@ -219,7 +219,7 @@ function Portfolio() {
           </a>
 
           <a
-            href="https://linkedin.com/in/yourprofile"
+            href="https://www.linkedin.com/in/pavan-kumar-n-086677235?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
@@ -228,7 +228,7 @@ function Portfolio() {
           </a>
 
           <a
-            href="https://github.com/yourprofile"
+            href="https://github.com/Pavankumar8002"
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
@@ -237,7 +237,7 @@ function Portfolio() {
           </a>
 
           <a
-            href="https://instagram.com/yourprofile"
+            href="https://www.instagram.com/pavan._.nagaraj_22?igsh=MXQwd3RobnRxN21pMg%3D%3D&utm_source=qr"
             target="_blank"
             rel="noreferrer"
             aria-label="Instagram"
