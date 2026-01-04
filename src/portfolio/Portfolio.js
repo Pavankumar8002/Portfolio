@@ -251,12 +251,12 @@ I am a Full Stack Developer specializing in building scalable, clean, and mainta
 
                 {
                   title: "WebScraper",
-                  desc: "A craping web application which will scrape the links in a website based on URL using BS4 (Beautiful Soup) Python.",
+                  desc: "Developed a Python-based web scraping application designed to extract and organize hyperlinks from websites using a user-provided URL. The application leverages the BeautifulSoup (BS4) library to parse HTML content efficiently and identify internal and external links present on the webpage. It is capable of handling dynamic page structures, validating URLs, and presenting the scraped data in a structured format for further analysis or storage. This project demonstrates practical experience in web data extraction, HTML parsing, and automated data collection using Python.",
                   link: "https://github.com/Pavankumar8002/WebScraper",
                 },
                 {
                   title: "VoiceBot",
-                  desc: "Python AI voice assistant performs basic activities with NLP processing and voice input output usage of Google Text to speech is also made. ",
+                  desc: "Developed a Python-based AI Voice Assistant that enables natural, voice-driven interaction using NLP for command understanding and Google Text-to-Speech for audio responses. The system supports speech recognition, emotion-aware responses, real-time information retrieval, jokes and facts generation, mathematical operations, and OS-level task automation through integrated APIs and libraries.",
                   link: "https://github.com/Pavankumar8002/VoiceBot",
                 },
               ].map((p, i) => (
@@ -317,7 +317,7 @@ I am a Full Stack Developer specializing in building scalable, clean, and mainta
                 </a>
 
                 <a
-                  href="https://www.instagram.com/pavan._.nagaraj_22?igsh=MXQwd3RobnRxN21pMg%3D%3D&utm_source=qr"
+                  href="www.linkedin.com/in/pavankumarpk8002"
                   target="_blank"
                   rel="noreferrer"
                   aria-label="Instagram"
