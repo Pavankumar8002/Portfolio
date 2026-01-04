@@ -324,11 +324,18 @@ I am a Full Stack Developer specializing in building scalable, clean, and mainta
                 >
                   <i className="fab fa-instagram"></i>
                 </a>
+
+                <a
+                  href="tel:+919739565251"
+                  aria-label="Call"
+                >
+                  <i className="fas fa-phone"></i>
+                </a>
               </div>
 
               {/* QR Code */}
               <div className="qr-box">
-                <img src="/Pictures/qr.png" alt="QR Code" />
+                <img src="/Pictures/Pavan_Kumar_Resume_QR.png" alt="QR Code" />
               </div>
             </div>
 
