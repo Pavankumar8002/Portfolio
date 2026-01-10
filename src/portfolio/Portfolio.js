@@ -317,7 +317,7 @@ I am a Full Stack Developer specializing in building scalable, clean, and mainta
                 </a>
 
                 <a
-                  href="www.linkedin.com/in/pavankumarpk8002"
+                  href="https://www.instagram.com/pavan._.nagaraj_22?igsh=MXQwd3RobnRxN21pMg%3D%3D&utm_source=qr"
                   target="_blank"
                   rel="noreferrer"
                   aria-label="Instagram"
