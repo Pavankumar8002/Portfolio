@@ -151,6 +151,9 @@ I am a Full Stack Developer specializing in building scalable, clean, and mainta
               "JavaScript",
               ".NET (C#)",
               "PostgreSQL",
+              "Kafka",
+              "K8's",
+              "Amazon RDS",
               "HTML & CSS",
               "Git & GitHub",
               "Java",
@@ -182,8 +185,8 @@ I am a Full Stack Developer specializing in building scalable, clean, and mainta
           {
             title: "Associate Software Engineer",
             company: "Idea Infinity IT Solution Pvt Ltd",
-            duration: "Jul 2024 - Present",
-            desc: "Building responsive React applications with modern UI/UX.",
+            duration: "Jul 2024 - Sep 2026",
+            desc: "Building responsive React applications with modern UI/UX with .Net Core focused on Microservices.",
           },
           {
             title: "Full Stack Intern",
@@ -334,9 +337,9 @@ I am a Full Stack Developer specializing in building scalable, clean, and mainta
               </div>
 
               {/* QR Code */}
-              <div className="qr-box">
+              {/* <div className="qr-box">
                 <img src="/Pictures/Pavan_Kumar_Resume_QR.png" alt="QR Code" />
-              </div>
+              </div> */}
             </div>
 
             {/* RIGHT — CONTACT FORM */}
