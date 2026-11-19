@@ -1,6 +1,29 @@
 /* =========================================================
-   MARQUEE WRAPPER — PREMIUM RUSTIC
+   MARQUEE — BLACK PANTHER SUIT BAND
+   Uses the variables from style.css (--suit, --steel, --ease...).
+   Load style.css first, or paste this at the end of it.
 ========================================================= */
+
+/* Container: matte black band with the suit weave and steel hairlines */
+.marquee-container {
+  position: relative;
+  overflow: hidden;
+  height: 130px;
+  margin: 60px auto;
+  background:
+    linear-gradient(180deg, rgba(8, 8, 10, .93), rgba(3, 3, 4, .97)),
+    var(--suit, none);
+  background-size: auto, 26px 45px;
+  border-top: 1px solid var(--border-soft, rgba(138, 144, 156, .16));
+  border-bottom: 1px solid var(--border-soft, rgba(138, 144, 156, .16));
+  box-shadow:
+    inset 0 18px 30px -18px rgba(0, 0, 0, .9),
+    inset 0 -18px 30px -18px rgba(0, 0, 0, .9);
+
+  /* Logos fade out softly at both ends */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
 
 .marquee-wrapper {
   width: 100%;
@@ -9,53 +32,49 @@
   margin: 0;
 }
 
-/* Subtle vintage grain overlay */
+/* Fabric sheen sweeping across the band (replaces the grain overlay) */
 .marquee-container::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(255, 255, 255, 0.04),
-      transparent 70%
-    ),
-    repeating-linear-gradient(
-      45deg,
-      rgba(255, 255, 255, 0.02),
-      rgba(255, 255, 255, 0.02) 2px,
-      transparent 2px,
-      transparent 6px
-    );
+  background: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(150, 140, 210, .05) 38%,
+    rgba(200, 205, 220, .06) 46%,
+    transparent 62%
+  );
 }
 
 /* =========================================================
-   MARQUEE STRIP — FIXED VERTICAL SPACING
+   MARQUEE STRIP
 ========================================================= */
-
 .marquee {
   display: flex;
   align-items: center;
   gap: 4vw;
 
   height: 100%;
-  padding: 18px 0;              /* 🔑 FIX: vertical breathing space */
+  padding: 18px 0;
   box-sizing: border-box;
 
   position: relative;
   z-index: 2;
 
-  animation: scroll 18s linear infinite;
+  animation: scroll 22s linear infinite;
   will-change: transform;
+}
+
+/* Pause while the visitor looks at a logo */
+.marquee-container:hover .marquee {
+  animation-play-state: paused;
 }
 
 /* =========================================================
    MARQUEE ITEMS
 ========================================================= */
-
 .marquee-item {
   flex-shrink: 0;
   display: flex;
@@ -64,9 +83,9 @@
 }
 
 /* =========================================================
-   MARQUEE IMAGES — SAFE HOVER
+   MARQUEE IMAGES
+   Resting: muted steel-grey. Hover: full colour.
 ========================================================= */
-
 .marquee-image {
   width: 6vw;
   max-width: 110px;
@@ -74,37 +93,39 @@
   height: auto;
   object-fit: contain;
 
-  filter: grayscale(100%) brightness(85%) contrast(1.1);
-  opacity: 0.75;
+  filter: grayscale(100%) brightness(78%) contrast(1.1);
+  opacity: .7;
 
   transform-origin: center center;
-  transition: transform 0.35s ease, filter 0.35s ease, opacity 0.35s ease;
+  transition:
+    transform .45s var(--ease, ease),
+    filter .45s var(--ease, ease),
+    opacity .45s var(--ease, ease);
 }
 
-/* Hover reveal (no clipping) */
 .marquee-image:hover {
   filter: grayscale(0%) brightness(100%);
   opacity: 1;
-  transform: scale(1.05);
+  transform: translateY(-2px) scale(1.04);
 }
 
 /* =========================================================
    SCROLL ANIMATION
 ========================================================= */
-
 @keyframes scroll {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(-100%);
+  from { transform: translateX(100%); }
+  to   { transform: translateX(-100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    animation: none;
   }
 }
 
 /* =========================================================
-   RESPONSIVE — ALL SCREEN SIZES
+   RESPONSIVE
 ========================================================= */
-
 @media (max-width: 1024px) {
   .marquee {
     gap: 5vw;

@@ -1,18 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&display=swap');
 
 /* =========================================================
-   SERPENT LAIR — BASE ENVIRONMENT
+   WAKANDA — LOADING SCREEN
+   Karnataka map, Black Panther mask, orbiting Kimoyo beads,
+   vibranium glow. Same HTML hooks as before:
+   .loading-container, .loading-text (+ span per letter),
+   .special-day, .glitter, .firework x3
 ========================================================= */
 
 .loading-container {
+  /* Self-contained tokens (works without style.css) */
+  --wk-violet: #6a4fc4;
+  --wk-steel: #8a909c;
+  --wk-steel-dim: #565b66;
+  --wk-ease: cubic-bezier(.22, .61, .36, 1);
+
+  /* Suit weave */
+  --wk-suit: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='45' viewBox='0 0 26 45'%3E%3Cdefs%3E%3Cg id='a'%3E%3Cpolygon points='0,-15 13,-7.5 13,7.5 0,15 -13,7.5 -13,-7.5' fill='%230c0c0f' stroke='%23000' stroke-width='1.1'/%3E%3Cpolyline points='-12,-6.8 0,-13.8 12,-6.8' fill='none' stroke='rgba(190,196,208,0.13)' stroke-width='0.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3C/defs%3E%3Cuse href='%23a' x='0' y='0'/%3E%3Cuse href='%23a' x='26' y='0'/%3E%3Cuse href='%23a' x='13' y='22.5'/%3E%3Cuse href='%23a' x='0' y='45'/%3E%3Cuse href='%23a' x='26' y='45'/%3E%3C/svg%3E");
+
+  /* Karnataka outline (plotted from lat/long of the state boundary),
+     with a vibranium marker on Bengaluru and small dots for Mysuru and Mangaluru */
+  --wk-karnataka: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='190' height='290' viewBox='0 0 190 290'%3E%3Cpath d='M25,66 L54,62 L77,46 L104,34 L124,10 L143,24 L128,44 L135,60 L128,80 L147,92 L151,108 L137,136 L129,160 L149,188 L166,196 L180,216 L170,232 L155,236 L153,252 L147,266 L131,276 L116,280 L101,272 L77,266 L66,256 L54,244 L46,238 L37,233 L37,228 L31,208 L23,188 L21,172 L12,156 L9,146 L12,136 L16,124 L8,112 L16,88 Z' fill='rgba(138,144,156,0.07)' stroke='%238a909c' stroke-opacity='.65' stroke-width='1' stroke-linejoin='round'/%3E%3Ccircle cx='106' cy='252' r='2' fill='%238a909c' fill-opacity='.7'/%3E%3Ccircle cx='37' cy='228' r='2' fill='%238a909c' fill-opacity='.7'/%3E%3Ccircle cx='143' cy='225' r='3.6' fill='%236a4fc4'/%3E%3Ccircle cx='143' cy='225' r='9' fill='none' stroke='%236a4fc4' stroke-opacity='.65' stroke-width='1'/%3E%3Ccircle cx='143' cy='225' r='16' fill='none' stroke='%236a4fc4' stroke-opacity='.3' stroke-width='.8'/%3E%3C/svg%3E");
+
+  /* Black Panther cowl: swept-back pointed ears, narrow angular white lenses
+     slanting down toward the nose, cheek seams, claw necklace under the chin */
+  --wk-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='190' viewBox='0 0 140 190'%3E%3Cg stroke='%238a909c' stroke-width='1.6' stroke-linejoin='round' fill='%230a0a0d'%3E%3Cpath d='M26,58 Q20,28 24,6 Q50,16 66,38Z'/%3E%3Cpath d='M114,58 Q120,28 116,6 Q90,16 74,38Z'/%3E%3Cpath d='M26,58 Q70,22 114,58 L122,92 Q118,122 100,142 L86,160 Q70,168 54,160 L40,142 Q22,122 18,92Z'/%3E%3C/g%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M30,50 Q27,28 29,14 Q46,22 58,38 M110,50 Q113,28 111,14 Q94,22 82,38' stroke='%236a4fc4' stroke-width='1.1'/%3E%3Cpath d='M70,30 V64 M50,44 L66,70 M90,44 L74,70' stroke='%23565b66' stroke-width='1.4'/%3E%3Cpath d='M28,92 L42,128 L56,152 M112,92 L98,128 L84,152' stroke='%236a4fc4' stroke-width='1.3'/%3E%3Cpath d='M58,140 Q70,146 82,140' stroke='%23565b66' stroke-width='1.4'/%3E%3C/g%3E%3Cg fill='%23dfe3ec'%3E%3Cpolygon points='28,70 64,84 62,92 36,80'/%3E%3Cpolygon points='112,70 76,84 78,92 104,80'/%3E%3C/g%3E%3Cpolygon points='64,100 76,100 70,120' fill='%23565b66'/%3E%3Cg fill='%238a909c' fill-opacity='.85'%3E%3Cpolygon points='30,164 42,164 36,172'/%3E%3Cpolygon points='48,168 62,168 55,180'/%3E%3Cpolygon points='64,170 76,170 70,186'/%3E%3Cpolygon points='78,168 92,168 85,180'/%3E%3Cpolygon points='98,164 110,164 104,172'/%3E%3C/g%3E%3C/svg%3E");
+
+  /* Kimoyo beads on an orbit ring, with an inner vibranium ring */
+  --wk-orbit: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Cdefs%3E%3Cg id='k'%3E%3Cpolygon points='0,-8 6.9,-4 6.9,4 0,8 -6.9,4 -6.9,-4' fill='%230b0b0d' stroke='%238a909c' stroke-width='1.2'/%3E%3Ccircle r='2' fill='%236a4fc4'/%3E%3C/g%3E%3C/defs%3E%3Ccircle cx='150' cy='150' r='120' fill='none' stroke='%23565b66' stroke-width='1' stroke-dasharray='2 6'/%3E%3Ccircle cx='150' cy='150' r='96' fill='none' stroke='%236a4fc4' stroke-opacity='.35' stroke-width='.8'/%3E%3Cuse href='%23k' x='270' y='150'/%3E%3Cuse href='%23k' x='210' y='253.9'/%3E%3Cuse href='%23k' x='90' y='253.9'/%3E%3Cuse href='%23k' x='30' y='150'/%3E%3Cuse href='%23k' x='90' y='46.1'/%3E%3Cuse href='%23k' x='210' y='46.1'/%3E%3C/svg%3E");
+
   position: fixed;
   inset: 0;
-  background:
-    radial-gradient(
-      ellipse at center,
-      rgba(20, 60, 45, 0.18),
-      rgba(5, 12, 9, 0.98) 70%
-    );
+  background: radial-gradient(ellipse at center, #0d0b18, #030304 72%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,258 +40,255 @@
 }
 
 /* =========================================================
-   SNAKE SCALE FIELD
+   BACKDROP — vignette over Karnataka over the suit weave
 ========================================================= */
-
 .loading-container::before {
   content: "";
   position: absolute;
-  inset: -40%;
-  background:
-    radial-gradient(ellipse at 30% 20%, rgba(120,207,160,0.08) 0 40%, transparent 42%),
-    radial-gradient(ellipse at 70% 40%, rgba(90,170,135,0.08) 0 40%, transparent 42%),
-    radial-gradient(ellipse at 50% 70%, rgba(60,140,110,0.08) 0 40%, transparent 42%);
-  background-size: 48px 42px;
-  filter: contrast(1.2);
-  animation: scale-crawl 18s linear infinite;
-  opacity: 0.7;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse at center, transparent 18%, #030304 96%),
+    var(--wk-karnataka),
+    var(--wk-suit);
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-position: center, center, 0 0;
+  background-size: 100% 100%, auto min(56vmin, 420px), 26px 45px;
+  opacity: .85;
+  pointer-events: none;
+  animation: wk-map-glow 5s ease-in-out infinite;
 }
 
 /* =========================================================
-   LOADING TEXT — SERPENT BODY
+   ORBIT — kimoyo beads circling the centre
 ========================================================= */
-
-.loading-text {
-  position: relative;
-  font-family: 'Dancing Script', cursive;
-  font-size: clamp(2.6rem, 5vw, 3.6rem);
-  font-weight: 700;
-  letter-spacing: 1.4px;
-  text-align: center;
-  color: #e8fff5;
-
-  animation:
-    fadeInRise 1.6s ease-out forwards,
-    serpent-breathe 3.2s ease-in-out infinite,
-    serpent-sway 6s ease-in-out infinite;
-
-  text-shadow:
-    0 0 16px rgba(120,207,160,0.45),
-    0 0 42px rgba(30,90,70,0.35);
-}
-
-
-/* =========================================================
-   SNAKE EYE (REALISTIC)
-========================================================= */
-
-.loading-text::after {
+.loading-container::after {
   content: "";
   position: absolute;
-  top: -22px;
-  right: -28px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 45% 45%, #c8ffe6 0%, #7cffc5 35%, #1f6b4b 60%, #06140f 100%);
-  box-shadow:
-    0 0 14px rgba(120,207,160,0.8),
-    0 0 30px rgba(80,160,120,0.4);
-  animation: eye-blink 6.5s ease-in-out infinite;
+  top: 50%;
+  left: 50%;
+  width: min(80vmin, 460px);
+  height: min(80vmin, 460px);
+  background: var(--wk-orbit) no-repeat center / contain;
+  opacity: .6;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: wk-orbit 28s linear infinite;
 }
 
-/* Vertical pupil */
+/* =========================================================
+   LOADING TEXT — vibranium-steel lettering
+========================================================= */
+.loading-text {
+  position: relative;
+  z-index: 2;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(1.8rem, 4.4vw, 2.9rem);
+  font-weight: 700;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #c3c8d4;
+  padding: 0 1rem;
+  text-shadow: 0 0 22px rgba(106, 79, 196, .35);
+  animation:
+    wk-rise 1.4s var(--wk-ease) forwards,
+    wk-text-glow 3.4s ease-in-out infinite;
+}
+
+/* Black Panther cowl above the title */
 .loading-text::before {
   content: "";
   position: absolute;
-  top: -18px;
-  right: -22px;
-  width: 4px;
-  height: 10px;
-  background: #020705;
-  border-radius: 50%;
-  z-index: 2;
-  animation: pupil-focus 6.5s ease-in-out infinite;
+  left: 50%;
+  bottom: calc(100% + 16px);
+  width: clamp(80px, 11vmin, 116px);
+  aspect-ratio: 140 / 190;
+  transform: translateX(-50%);
+  background: var(--wk-mask) no-repeat center / contain;
+  filter: drop-shadow(0 0 10px rgba(106, 79, 196, .45));
+  animation: wk-mask-glow 3.4s ease-in-out infinite;
 }
 
-.loading-text span {
-  display: inline-block;
-  background-image:
-    linear-gradient(
-      120deg,
-      rgba(255,255,255,0.12),
-      rgba(255,255,255,0),
-      rgba(255,255,255,0.12)
-    );
-  background-size: 200% 100%;
-  background-clip: text;
-  -webkit-background-clip: text;
-
-  animation:
-    skin-sheen 4.5s ease-in-out infinite,
-    letter-drift 3.6s ease-in-out infinite;
-}
-/* Side-to-side snake motion */
-@keyframes serpent-sway {
-  0%   { transform: translateX(0); }
-  25%  { transform: translateX(-6px) rotate(-0.4deg); }
-  50%  { transform: translateX(0); }
-  75%  { transform: translateX(6px) rotate(0.4deg); }
-  100% { transform: translateX(0); }
-}
-
-/* Individual letter breathing */
-@keyframes letter-drift {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-6px); }
-  100% { transform: translateY(0); }
-}
-
-
-/* =========================================================
-   SPECIAL DAY MODE — SLYTHERIN CELEBRATION
-========================================================= */
-
-.loading-container.special-day {
-  background:
-    radial-gradient(circle at center,
-      rgba(60,160,120,0.45),
-      rgba(10,25,18,0.98) 70%);
-  animation: aurora-pulse 8s ease-in-out infinite;
-}
-
-/* =========================================================
-   MULTI-LAYER STAR FIELD (DEPTH)
-========================================================= */
-
-.loading-container.special-day::after,
-.loading-container.special-day::before {
+/* Thin vibranium rule under the title */
+.loading-text::after {
   content: "";
   position: absolute;
-  inset: 0;
-  pointer-events: none;
+  left: 50%;
+  top: calc(100% + 12px);
+  width: 120px;
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, var(--wk-violet), transparent);
+}
+
+/* Per-letter sheen: steel with a moving highlight */
+.loading-text span {
+  display: inline-block;
+  background-image: linear-gradient(
+    110deg,
+    #7d8390 0%,
+    #7d8390 38%,
+    #e4e7ee 50%,
+    #7d8390 62%,
+    #7d8390 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation:
+    wk-sheen 4.2s ease-in-out infinite,
+    wk-letter 3.6s ease-in-out infinite;
+}
+
+/* =========================================================
+   SPECIAL DAY — WAKANDA FOREVER
+========================================================= */
+.loading-container.special-day {
+  background:
+    radial-gradient(1px 1px at 10% 20%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 80% 30%, #d9d4f5, transparent),
+    radial-gradient(1px 1px at 40% 60%, #fff, transparent),
+    radial-gradient(2px 2px at 70% 80%, #b9aef0, transparent),
+    radial-gradient(ellipse at center, rgba(106, 79, 196, .45), #05040a 72%);
+  background-size: 320px 320px, 320px 320px, 320px 320px, 320px 320px, 100% 100%;
+  background-position: 0 0, 0 0, 0 0, 0 0, 0 0;
+  animation:
+    wk-stars 50s linear infinite,
+    wk-aurora 8s ease-in-out infinite;
+}
+
+.loading-container.special-day::before {
+  opacity: 1;
+  filter: brightness(1.25);
 }
 
 .loading-container.special-day::after {
-  background:
-    radial-gradient(1px 1px at 10% 20%, #fff, transparent),
-    radial-gradient(1.5px 1.5px at 80% 30%, #d9fff0, transparent),
-    radial-gradient(1px 1px at 40% 60%, #fff, transparent),
-    radial-gradient(2px 2px at 70% 80%, #b8ffe2, transparent);
-  background-size: 320px 320px;
-  animation: star-drift-slow 60s linear infinite;
+  opacity: .85;
+  animation-duration: 14s;
 }
 
-.loading-container.special-day::before {
-  background:
-    radial-gradient(1px 1px at 30% 40%, #ffffffaa, transparent),
-    radial-gradient(1.2px 1.2px at 60% 70%, #e6fff5, transparent);
-  background-size: 200px 200px;
-  animation: star-drift-fast 35s linear infinite;
+.loading-container.special-day .loading-text {
+  animation:
+    wk-rise 1.2s var(--wk-ease) forwards,
+    wk-celebrate 1.8s ease-in-out infinite;
+  text-shadow:
+    0 0 28px rgba(150, 125, 235, .85),
+    0 0 70px rgba(106, 79, 196, .6);
 }
 
-/* =========================================================
-   GLITTER DUST (EMERALD SPARKS)
-========================================================= */
+.loading-container.special-day .loading-text::before {
+  filter: drop-shadow(0 0 18px rgba(130, 105, 225, .85));
+}
 
+/* Vibranium sparks rising */
 .loading-container.special-day .glitter {
   position: absolute;
   inset: -20%;
   background:
-    radial-gradient(circle, rgba(120,207,160,.9) 0 2px, transparent 3px),
-    radial-gradient(circle, rgba(255,255,255,.9) 0 1.5px, transparent 3px);
-  background-size: 100px 100px;
-  animation: glitter-rise 16s linear infinite;
-  opacity: .7;
+    radial-gradient(circle, rgba(130, 105, 225, .9) 0 2px, transparent 3px),
+    radial-gradient(circle, rgba(200, 205, 220, .85) 0 1.5px, transparent 3px);
+  background-size: 100px 100px, 70px 70px;
+  background-position: 0 0, 35px 20px;
+  opacity: .6;
   pointer-events: none;
+  animation: wk-sparks 16s linear infinite;
 }
 
-/* =========================================================
-   FIREWORK BURSTS (MULTI POINT)
-========================================================= */
-
+/* Energy bursts */
 .loading-container.special-day .firework {
   position: absolute;
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  animation: firework 3s ease-out infinite;
+  animation: wk-burst 3s ease-out infinite;
 }
 
-.loading-container.special-day .firework:nth-child(1) {
-  top: 20%;
-  left: 25%;
-}
-
-.loading-container.special-day .firework:nth-child(2) {
-  top: 60%;
-  left: 70%;
-  animation-delay: 1.2s;
-}
-
-.loading-container.special-day .firework:nth-child(3) {
-  top: 35%;
-  left: 55%;
-  animation-delay: 2.1s;
-}
-
-/* =========================================================
-   CELEBRATION TEXT — POWERED SERPENT
-========================================================= */
-
-.loading-container.special-day .loading-text {
-  animation:
-    fadeInRise 1.4s ease-out forwards,
-    serpent-breathe 3s ease-in-out infinite,
-    celebration-pulse 1.6s ease-in-out infinite;
-
-  text-shadow:
-    0 0 28px rgba(140,255,200,.9),
-    0 0 60px rgba(60,180,130,.7),
-    0 0 110px rgba(30,120,90,.45);
-}
+.loading-container.special-day .firework:nth-child(1) { top: 20%; left: 25%; }
+.loading-container.special-day .firework:nth-child(2) { top: 60%; left: 70%; animation-delay: 1.2s; }
+.loading-container.special-day .firework:nth-child(3) { top: 35%; left: 55%; animation-delay: 2.1s; }
 
 /* =========================================================
    ANIMATIONS
 ========================================================= */
-
-@keyframes aurora-pulse {
-  50% {
-    filter: brightness(1.15) saturate(1.2);
-  }
+@keyframes wk-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes star-drift-slow {
-  to { transform: translateY(-300px); }
+@keyframes wk-text-glow {
+  50% { text-shadow: 0 0 34px rgba(106, 79, 196, .6); }
 }
 
-@keyframes star-drift-fast {
-  to { transform: translateY(-180px); }
+@keyframes wk-mask-glow {
+  50% { filter: drop-shadow(0 0 18px rgba(106, 79, 196, .75)); }
 }
 
-@keyframes glitter-rise {
+@keyframes wk-sheen {
+  from { background-position: 150% 0; }
+  to   { background-position: -50% 0; }
+}
+
+@keyframes wk-letter {
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes wk-orbit {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes wk-map-glow {
+  50% { opacity: 1; }
+}
+
+@keyframes wk-stars {
+  to { background-position: 0 -320px, 0 -320px, 0 -320px, 0 -320px, 0 0; }
+}
+
+@keyframes wk-aurora {
+  50% { filter: brightness(1.15) saturate(1.15); }
+}
+
+@keyframes wk-sparks {
   to { transform: translateY(-260px); }
 }
 
-@keyframes firework {
+@keyframes wk-burst {
   0% {
-    box-shadow:
-      0 0 0 0 rgba(120,207,160,.95),
-      0 0 0 0 rgba(255,255,255,.9);
+    box-shadow: 0 0 0 0 rgba(130, 105, 225, .95), 0 0 0 0 rgba(200, 205, 220, .85);
     opacity: 1;
   }
   100% {
-    box-shadow:
-      0 0 0 90px rgba(120,207,160,0),
-      0 0 0 140px rgba(255,255,255,0);
+    box-shadow: 0 0 0 90px rgba(130, 105, 225, 0), 0 0 0 140px rgba(200, 205, 220, 0);
     opacity: 0;
   }
 }
 
-@keyframes celebration-pulse {
+@keyframes wk-celebrate {
   50% {
-    transform: scale(1.08);
-    filter: drop-shadow(0 0 34px rgba(200,255,230,.95));
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 26px rgba(150, 125, 235, .8));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-container,
+  .loading-container::before,
+  .loading-container::after,
+  .loading-text,
+  .loading-text::before,
+  .loading-text span,
+  .loading-container .glitter,
+  .loading-container .firework {
+    animation: none !important;
+  }
+
+  .loading-text {
+    opacity: 1;
+  }
+
+  .loading-container::after {
+    transform: translate(-50%, -50%);
   }
 }

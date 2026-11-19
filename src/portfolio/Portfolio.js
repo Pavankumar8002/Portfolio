@@ -108,13 +108,22 @@ function Portfolio() {
         <div className="row align-items-center g-4">
           
           {/* PROFILE IMAGE */}
-          <div className="col-md-5 text-center">
+          {/* <div className="col-md-5 text-center">
             <img
               src="/Pictures/profilepic.jpg"
               alt="Profile"
               className="about-image img-fluid shadow"
             />
-          </div>
+          </div> */}
+          <div className="col-md-5 text-center">
+  <figure className="about-frame">
+    <img
+      src="/Pictures/profilepic.jpg"
+      alt="Profile"
+      className="about-image img-fluid"
+    />
+  </figure>
+</div>
 
           {/* ABOUT TEXT */}
           <div className="col-md-7">
@@ -137,9 +146,9 @@ I am a Full Stack Developer specializing in building scalable, clean, and mainta
 
 
       {/* MARQUEE */}
-      <section className="py-3 bg-light">
+      {/* <section className="py-3 bg-light"> */}
         <Marquee images={images} />
-      </section>
+      {/* </section> */}
       <div className="border rounded text-center py-3 fw-semibold skill-card">
       {/* SKILLS */}
       <section className="py-5">
